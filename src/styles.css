@@ -110,16 +110,15 @@
 @utility glass {
   background: color-mix(in oklab, white 4%, transparent);
   backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
   border: 1px solid var(--hairline);
 }
 
+@utility gradient-brand {
+  background-image: linear-gradient(90deg, #247BFF 0%, #18D6D0 100%);
+}
+
 @utility gradient-text {
-  background-image: linear-gradient(100deg,
-    oklch(1 0 0) 0%,
-    oklch(0.95 0.03 235) 40%,
-    color-mix(in oklab, var(--sky) 85%, white) 70%,
-    color-mix(in oklab, var(--teal) 80%, white) 100%);
+  background-image: linear-gradient(90deg, #247BFF 0%, #18D6D0 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
