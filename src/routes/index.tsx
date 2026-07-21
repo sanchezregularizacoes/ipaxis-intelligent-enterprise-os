@@ -1027,7 +1027,7 @@ function FAQ() {
   ];
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="py-28">
+    <section id="faq" className="py-28">
       <div className="container-page">
         <Reveal>
           <SectionTitle
