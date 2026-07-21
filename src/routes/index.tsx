@@ -737,7 +737,7 @@ function Automation() {
 /* ---------------- BUILDER ---------------- */
 function Builder() {
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section id="builder" className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 grid-lines opacity-40 pointer-events-none" />
       <div className="container-page relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
