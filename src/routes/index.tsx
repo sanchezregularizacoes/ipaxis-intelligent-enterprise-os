@@ -9,6 +9,7 @@ import {
   Calendar, DollarSign, FileSignature, Bell, Rocket, ChevronRight,
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import ipaxisIcon from "@/assets/ipaxis-icon.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -116,14 +117,15 @@ function Nav() {
   );
 }
 
-function Logo() {
+function Logo({ className = "h-8 w-8" }: { className?: string }) {
   return (
-    <div className="relative h-7 w-7 rounded-lg overflow-hidden hairline">
-      <div className="absolute inset-0 bg-gradient-to-br from-brand via-sky to-teal" />
-      <div className="absolute inset-[2px] rounded-[7px] bg-background flex items-center justify-center">
-        <div className="h-2.5 w-2.5 rounded-sm bg-gradient-to-br from-sky to-teal rotate-45" />
-      </div>
-    </div>
+    <img
+      src={ipaxisIcon.url}
+      alt="IPAXIS"
+      className={className + " object-contain"}
+      loading="eager"
+      decoding="async"
+    />
   );
 }
 
