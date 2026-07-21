@@ -74,21 +74,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "IPAXIS — Transformando processos em inteligência" },
+      { title: "IPAXIS — Sistema operacional inteligente para empresas" },
       {
         name: "description",
         content:
-          "IPAXIS é o sistema operacional inteligente para empresas: CRM, IA, Automação, Financeiro e BI em um único ecossistema.",
+          "CRM, IA, Automação, Financeiro, BI e Workflows em uma única plataforma. Elimine sistemas fragmentados e opere com inteligência de dados.",
       },
       { name: "author", content: "IPAXIS" },
-      { property: "og:title", content: "IPAXIS — Transformando processos em inteligência" },
+      { property: "og:title", content: "IPAXIS — Sistema operacional inteligente para empresas" },
       {
         property: "og:description",
         content:
-          "Plataforma empresarial que une CRM, Inteligência Artificial, Automação e Gestão em um único ecossistema.",
+          "CRM, IA, Automação, Financeiro, BI e Workflows em uma única plataforma. Elimine sistemas fragmentados e opere com inteligência de dados.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "IPAXIS — Sistema operacional inteligente para empresas" },
+      { name: "twitter:description", content: "CRM, IA, Automação, Financeiro, BI e Workflows em uma única plataforma. Elimine sistemas fragmentados e opere com inteligência de dados." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e8eb5fd7-54b5-43f4-91d4-4c137dada27c/id-preview-610d3a2f--0dafbc66-8857-4fdf-91f8-2325ece69259.lovable.app-1784653539335.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e8eb5fd7-54b5-43f4-91d4-4c137dada27c/id-preview-610d3a2f--0dafbc66-8857-4fdf-91f8-2325ece69259.lovable.app-1784653539335.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
