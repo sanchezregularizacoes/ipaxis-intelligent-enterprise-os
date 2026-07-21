@@ -41,10 +41,16 @@ function Nav() {
     { label: "Plataforma", href: "#modulos" },
     { label: "IA", href: "#ia" },
     { label: "Automação", href: "#automacao" },
+    { label: "Builder", href: "#builder" },
     { label: "Segmentos", href: "#segmentos" },
+    { label: "Comparar", href: "#comparar" },
+    { label: "Segurança", href: "#seguranca" },
+    { label: "Clientes", href: "#clientes" },
+    { label: "FAQ", href: "#faq" },
     { label: "Sobre", href: "#sobre" },
     { label: "Contato", href: "#contato" },
   ];
+
 
   return (
     <header
@@ -737,7 +743,7 @@ function Automation() {
 /* ---------------- BUILDER ---------------- */
 function Builder() {
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section id="builder" className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 grid-lines opacity-40 pointer-events-none" />
       <div className="container-page relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -863,7 +869,7 @@ function Compare() {
   ] as const;
   const heads = ["Planilhas", "CRM tradicional", "ERP", "IPAXIS"];
   return (
-    <section className="py-28">
+    <section id="comparar" className="py-28">
       <div className="container-page">
         <Reveal>
           <SectionTitle
@@ -920,7 +926,7 @@ function Security() {
     { i: Globe, t: "Alta disponibilidade", d: "99,99% de uptime, escalabilidade horizontal." },
   ];
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section id="seguranca" className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 radial-brand opacity-30 pointer-events-none" />
       <div className="container-page relative">
         <Reveal>
@@ -967,7 +973,7 @@ function Testimonials() {
     },
   ];
   return (
-    <section className="py-28">
+    <section id="clientes" className="py-28">
       <div className="container-page">
         <Reveal>
           <SectionTitle
@@ -1027,7 +1033,7 @@ function FAQ() {
   ];
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="py-28">
+    <section id="faq" className="py-28">
       <div className="container-page">
         <Reveal>
           <SectionTitle
@@ -1109,33 +1115,79 @@ function CTA() {
 
 /* ---------------- FOOTER ---------------- */
 function Footer() {
-  const cols = [
-    { t: "Plataforma", l: ["CRM","IA Corporativa","Automação","Dashboards","Workflow","Financeiro"] },
-    { t: "Segmentos", l: ["Incorporadoras","Indústrias","Serviços","Saúde","Educação","Agronegócio"] },
-    { t: "Empresa", l: ["Sobre","Clientes","Parceiros","Carreiras","Imprensa","Contato"] },
-    { t: "Recursos", l: ["Documentação","API","Central de ajuda","Status","Blog","Segurança"] },
+  const cols: { t: string; l: { label: string; href: string }[] }[] = [
+    {
+      t: "Plataforma",
+      l: [
+        { label: "CRM", href: "#modulos" },
+        { label: "IA Corporativa", href: "#ia" },
+        { label: "Automação", href: "#automacao" },
+        { label: "Dashboards", href: "#builder" },
+        { label: "Workflow", href: "#builder" },
+        { label: "Financeiro", href: "#modulos" },
+      ],
+    },
+    {
+      t: "Segmentos",
+      l: [
+        { label: "Incorporadoras", href: "#segmentos" },
+        { label: "Indústrias", href: "#segmentos" },
+        { label: "Serviços", href: "#segmentos" },
+        { label: "Saúde", href: "#segmentos" },
+        { label: "Educação", href: "#segmentos" },
+        { label: "Agronegócio", href: "#segmentos" },
+      ],
+    },
+    {
+      t: "Empresa",
+      l: [
+        { label: "Sobre", href: "#sobre" },
+        { label: "Clientes", href: "#clientes" },
+        { label: "Parceiros", href: "#contato" },
+        { label: "Carreiras", href: "mailto:carreiras@ipaxis.com" },
+        { label: "Imprensa", href: "mailto:imprensa@ipaxis.com" },
+        { label: "Contato", href: "#contato" },
+      ],
+    },
+    {
+      t: "Recursos",
+      l: [
+        { label: "Documentação", href: "#modulos" },
+        { label: "API", href: "#modulos" },
+        { label: "Central de ajuda", href: "#faq" },
+        { label: "Status", href: "#seguranca" },
+        { label: "Comparativo", href: "#comparar" },
+        { label: "Segurança", href: "#seguranca" },
+      ],
+    },
+  ];
+  const socials: { s: string; href: string }[] = [
+    { s: "in", href: "https://www.linkedin.com/" },
+    { s: "ig", href: "https://www.instagram.com/" },
   ];
   return (
     <footer id="sobre" className="pt-20 pb-10 border-t border-hairline">
       <div className="container-page">
         <div className="grid lg:grid-cols-6 gap-10">
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2.5">
+            <a href="#top" className="flex items-center gap-2.5">
               <Logo />
               <span className="text-[15px] font-semibold tracking-tight">IPAXIS</span>
-            </div>
+            </a>
             <p className="mt-5 text-sm text-muted-foreground max-w-xs leading-relaxed">
               Sistema operacional inteligente para empresas. Unindo CRM, IA,
               Automação e Gestão em um único ecossistema.
             </p>
             <div className="mt-6 flex gap-2">
-              {["in","ig"].map((s) => (
+              {socials.map((s) => (
                 <a
-                  key={s}
-                  href="#"
+                  key={s.s}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
                   className="h-9 w-9 rounded-lg hairline bg-white/[0.02] flex items-center justify-center text-[10px] uppercase text-muted-foreground hover:text-foreground transition"
                 >
-                  {s}
+                  {s.s}
                 </a>
               ))}
             </div>
@@ -1145,9 +1197,9 @@ function Footer() {
               <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{c.t}</div>
               <ul className="mt-4 space-y-2.5">
                 {c.l.map((i) => (
-                  <li key={i}>
-                    <a href="#" className="text-[13px] text-foreground/80 hover:text-foreground transition">
-                      {i}
+                  <li key={i.label}>
+                    <a href={i.href} className="text-[13px] text-foreground/80 hover:text-foreground transition">
+                      {i.label}
                     </a>
                   </li>
                 ))}
@@ -1158,15 +1210,16 @@ function Footer() {
         <div className="mt-16 pt-6 border-t border-hairline flex flex-wrap items-center justify-between gap-4 text-[11px] text-muted-foreground">
           <div>© {new Date().getFullYear()} IPAXIS. Todos os direitos reservados.</div>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-foreground">Política de privacidade</a>
-            <a href="#" className="hover:text-foreground">Termos</a>
-            <a href="#" className="hover:text-foreground">LGPD</a>
+            <a href="#seguranca" className="hover:text-foreground">Política de privacidade</a>
+            <a href="#seguranca" className="hover:text-foreground">Termos</a>
+            <a href="#seguranca" className="hover:text-foreground">LGPD</a>
           </div>
         </div>
       </div>
     </footer>
   );
 }
+
 
 /* ---------------- PAGE ---------------- */
 function Home() {
