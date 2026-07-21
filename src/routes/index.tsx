@@ -920,7 +920,7 @@ function Security() {
     { i: Globe, t: "Alta disponibilidade", d: "99,99% de uptime, escalabilidade horizontal." },
   ];
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section id="seguranca" className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 radial-brand opacity-30 pointer-events-none" />
       <div className="container-page relative">
         <Reveal>
