@@ -863,7 +863,7 @@ function Compare() {
   ] as const;
   const heads = ["Planilhas", "CRM tradicional", "ERP", "IPAXIS"];
   return (
-    <section className="py-28">
+    <section id="comparar" className="py-28">
       <div className="container-page">
         <Reveal>
           <SectionTitle
