@@ -123,39 +123,19 @@ function Nav() {
   );
 }
 
+import ipaxisMark from "@/assets/ipaxis-mark.png.asset.json";
+
 function Logo({ className = "h-8 w-8" }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 64 64"
-      className={className}
-      xmlns="http://www.w3.org/2000/svg"
-      aria-label="IPAXIS"
-      role="img"
-    >
-      <defs>
-        <linearGradient id="ipaxisGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#247BFF" />
-          <stop offset="100%" stopColor="#18D6D0" />
-        </linearGradient>
-      </defs>
-      {/* Hexágono */}
-      <path
-        d="M32 4 L56 18 L56 46 L32 60 L8 46 L8 18 Z"
-        fill="none"
-        stroke="url(#ipaxisGrad)"
-        strokeWidth="4"
-        strokeLinejoin="round"
-      />
-      {/* X interno */}
-      <path
-        d="M18 20 L46 44 M46 20 L18 44"
-        stroke="url(#ipaxisGrad)"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
-    </svg>
+    <img
+      src={ipaxisMark.url}
+      alt="IPAXIS"
+      className={`${className} object-contain`}
+      draggable={false}
+    />
   );
 }
+
 
 /* ---------------- HERO ---------------- */
 function Hero() {
