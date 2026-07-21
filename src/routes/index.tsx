@@ -125,10 +125,12 @@ function Nav() {
 
 import ipaxisMark from "@/assets/ipaxis-mark.png.asset.json";
 
+const ipaxisMarkUrl = `https://ipaxis-evolve.lovable.app${ipaxisMark.url}`;
+
 function Logo({ className = "h-8 w-8" }: { className?: string }) {
   return (
     <img
-      src={ipaxisMark.url}
+      src={ipaxisMarkUrl}
       alt="IPAXIS"
       className={`${className} object-contain`}
       draggable={false}
