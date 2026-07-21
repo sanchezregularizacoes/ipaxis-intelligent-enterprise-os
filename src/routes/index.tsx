@@ -76,10 +76,12 @@ function Nav() {
         </nav>
         <div className="hidden lg:flex items-center gap-2">
           <a
-            href="#contato"
+            href="https://elevatev.lovable.app"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-3 py-2 text-[13px] text-muted-foreground hover:text-foreground"
           >
-            Entrar
+            Acessar
           </a>
           <a
             href="#contato"
