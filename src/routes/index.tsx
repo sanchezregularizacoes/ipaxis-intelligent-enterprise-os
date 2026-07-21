@@ -9,7 +9,7 @@ import {
   Calendar, DollarSign, FileSignature, Bell, Rocket, ChevronRight,
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import ipaxisIcon from "@/assets/ipaxis-icon.png.asset.json";
+
 
 export const Route = createFileRoute("/")({
   component: Home,
