@@ -37,17 +37,13 @@ function Nav() {
   }, []);
 
   const links = [
-    { label: "Soluções", href: "#solucao" },
     { label: "Plataforma", href: "#modulos" },
     { label: "IA", href: "#ia" },
     { label: "Automação", href: "#automacao" },
     { label: "Builder", href: "#builder" },
     { label: "Segmentos", href: "#segmentos" },
-    { label: "Comparar", href: "#comparar" },
     { label: "Segurança", href: "#seguranca" },
-    { label: "Clientes", href: "#clientes" },
     { label: "FAQ", href: "#faq" },
-    { label: "Sobre", href: "#sobre" },
     { label: "Contato", href: "#contato" },
   ];
 
@@ -58,41 +54,41 @@ function Nav() {
         scrolled ? "backdrop-blur-xl bg-background/70 border-b border-hairline" : ""
       }`}
     >
-      <div className="container-page flex h-16 items-center justify-between">
-        <a href="#top" className="flex items-center gap-2.5">
+      <div className="container-page flex h-16 items-center gap-6">
+        <a href="#top" className="flex items-center gap-2.5 shrink-0">
           <Logo />
           <span className="text-[15px] font-semibold tracking-tight">IPAXIS</span>
         </a>
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden xl:flex items-center gap-1 flex-1 justify-center min-w-0">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="px-3 py-2 text-[13px] text-muted-foreground hover:text-foreground transition-colors"
+              className="px-3 py-2 text-[13px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
             >
               {l.label}
             </a>
           ))}
         </nav>
-        <div className="hidden lg:flex items-center gap-2">
+        <div className="hidden xl:flex items-center gap-2 shrink-0 ml-auto">
           <a
             href="https://elevatev.lovable.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-2 text-[13px] text-muted-foreground hover:text-foreground"
+            className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand/10 px-4 py-2 text-[13px] font-medium text-foreground hover:bg-brand/20 hover:border-brand/60 transition"
           >
             Acessar
           </a>
           <a
             href="#contato"
-            className="group inline-flex items-center gap-1.5 rounded-full bg-brand px-4 py-2 text-[13px] font-medium text-brand-foreground hover:brightness-110 transition"
+            className="group inline-flex items-center gap-1.5 rounded-full bg-brand px-4 py-2 text-[13px] font-medium text-brand-foreground shadow-[0_8px_24px_-8px_rgba(36,123,255,0.6)] hover:brightness-110 transition whitespace-nowrap"
           >
             Solicitar demonstração
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </a>
         </div>
         <button
-          className="lg:hidden p-2 rounded-md hairline"
+          className="xl:hidden p-2 rounded-md hairline ml-auto"
           onClick={() => setOpen((v) => !v)}
           aria-label="Menu"
         >
@@ -100,7 +96,7 @@ function Nav() {
         </button>
       </div>
       {open && (
-        <div className="lg:hidden border-t border-hairline bg-background/95 backdrop-blur-xl">
+        <div className="xl:hidden border-t border-hairline bg-background/95 backdrop-blur-xl">
           <div className="container-page py-3 flex flex-col">
             {links.map((l) => (
               <a
@@ -113,7 +109,17 @@ function Nav() {
               </a>
             ))}
             <a
+              href="https://elevatev.lovable.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-flex items-center justify-center rounded-full border border-brand/40 bg-brand/10 px-4 py-2.5 text-sm font-medium text-foreground"
+            >
+              Acessar
+            </a>
+            <a
               href="#contato"
+              onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center rounded-full bg-brand px-4 py-2.5 text-sm font-medium text-brand-foreground"
             >
               Solicitar demonstração
