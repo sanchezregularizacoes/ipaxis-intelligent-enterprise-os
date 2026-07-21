@@ -967,7 +967,7 @@ function Testimonials() {
     },
   ];
   return (
-    <section className="py-28">
+    <section id="clientes" className="py-28">
       <div className="container-page">
         <Reveal>
           <SectionTitle
