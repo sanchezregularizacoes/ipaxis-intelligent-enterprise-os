@@ -41,10 +41,16 @@ function Nav() {
     { label: "Plataforma", href: "#modulos" },
     { label: "IA", href: "#ia" },
     { label: "Automação", href: "#automacao" },
+    { label: "Builder", href: "#builder" },
     { label: "Segmentos", href: "#segmentos" },
+    { label: "Comparar", href: "#comparar" },
+    { label: "Segurança", href: "#seguranca" },
+    { label: "Clientes", href: "#clientes" },
+    { label: "FAQ", href: "#faq" },
     { label: "Sobre", href: "#sobre" },
     { label: "Contato", href: "#contato" },
   ];
+
 
   return (
     <header
