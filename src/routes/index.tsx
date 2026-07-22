@@ -1192,7 +1192,9 @@ function Home() {
         <Implantacao />
         <Plataforma />
         <IA />
+        <Assistentes />
         <Automacao />
+
         <Builder />
         <Segmentos />
         <Comparativo />
