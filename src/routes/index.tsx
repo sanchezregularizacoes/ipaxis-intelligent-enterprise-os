@@ -298,7 +298,7 @@ function Problema() {
     { icon: Activity, title: "Decisão com dado velho", desc: "VGV do mês fechado só na virada. Diretoria decide olhando o passado." },
   ];
   return (
-    <section className="relative py-24 border-t border-hairline">
+    <section className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="A nova realidade"
@@ -334,7 +334,7 @@ function Ecossistema() {
     { icon: HardHat, label: "Obra & Vendas" },
   ];
   return (
-    <section className="relative py-24 border-t border-hairline overflow-hidden">
+    <section className="relative py-16 sm:py-24 border-t border-hairline overflow-hidden">
       <div className="absolute inset-0 radial-brand opacity-40 pointer-events-none" />
       <div className="container-page relative">
         <div className="text-center max-w-5xl mx-auto">
@@ -400,7 +400,7 @@ function ComoFunciona() {
     { title: "Acompanhamos a evolução", desc: "Melhoria contínua a cada lançamento.", icon: LineChart },
   ];
   return (
-    <section className="relative py-24 border-t border-hairline">
+    <section className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader eyebrow="Como funciona" title={<>Do diagnóstico à evolução — <span className="gradient-text">sem virar projeto de TI</span>.</>} />
         <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -434,7 +434,7 @@ function Implantacao() {
     "Suporte evolutivo contínuo conforme novos lançamentos",
   ];
   return (
-    <section id="implantacao" className="relative py-24 border-t border-hairline">
+    <section id="implantacao" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page grid lg:grid-cols-12 gap-12 items-start">
         <div className="lg:col-span-5">
           <SectionHeader
@@ -506,7 +506,7 @@ function Plataforma() {
     },
   ];
   return (
-    <section id="plataforma" className="relative py-24 border-t border-hairline">
+    <section id="plataforma" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Plataforma"
@@ -558,7 +558,7 @@ function IA() {
     "Transfere para atendimento humano no momento certo",
   ];
   return (
-    <section id="ia" className="relative py-24 border-t border-hairline overflow-hidden">
+    <section id="ia" className="relative py-16 sm:py-24 border-t border-hairline overflow-hidden">
       <div className="absolute inset-0 radial-brand opacity-30 pointer-events-none" />
       <div className="container-page relative">
         <SectionHeader
@@ -694,7 +694,7 @@ function Assistentes() {
   ];
 
   return (
-    <section id="assistentes" className="relative py-24 border-t border-hairline overflow-hidden">
+    <section id="assistentes" className="relative py-16 sm:py-24 border-t border-hairline overflow-hidden">
       <div className="absolute inset-0 radial-brand opacity-30 pointer-events-none" />
       <div className="container-page relative">
         <SectionHeader
@@ -798,7 +798,7 @@ function Automacao() {
     { icon: Bell, label: "Gestor notificado", sub: "Instantâneo" },
   ];
   return (
-    <section id="automacao" className="relative py-24 border-t border-hairline">
+    <section id="automacao" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Automação"
@@ -839,7 +839,7 @@ function Builder() {
     { icon: Wand2, name: "Automation Builder", desc: "Regras condicionais, gatilhos e ações." },
   ];
   return (
-    <section id="builder" className="relative py-24 border-t border-hairline">
+    <section id="builder" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Builder"
@@ -889,7 +889,7 @@ function Segmentos() {
     },
   ];
   return (
-    <section id="segmentos" className="relative py-24 border-t border-hairline">
+    <section id="segmentos" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Segmentos"
@@ -936,7 +936,7 @@ function Comparativo() {
     { name: "IPAXIS", values: [true, true, true, true, true, true, true], highlight: true },
   ];
   return (
-    <section id="comparar" className="relative py-24 border-t border-hairline">
+    <section id="comparar" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Comparativo"
@@ -985,7 +985,7 @@ function Seguranca() {
     { icon: Users, title: "SSO e multiusuário", desc: "Login corporativo e múltiplos empreendimentos em uma única conta." },
   ];
   return (
-    <section id="seguranca" className="relative py-24 border-t border-hairline">
+    <section id="seguranca" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Segurança"
@@ -1016,7 +1016,7 @@ function EarlyAdopters() {
     { icon: ShieldCheck, title: "Sem promessas fabricadas", desc: "Ainda não temos cases publicáveis, e por isso não inventamos números. Quando houver, os depoimentos aqui serão reais e atribuídos." },
   ];
   return (
-    <section id="clientes" className="relative py-24 border-t border-hairline">
+    <section id="clientes" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Em construção com os primeiros parceiros"
@@ -1063,7 +1063,7 @@ function FAQ() {
     { q: "Como iniciar?", a: "Solicitando uma demonstração. Em seguida fazemos o diagnóstico e desenhamos a proposta de implantação." },
   ];
   return (
-    <section id="faq" className="relative py-24 border-t border-hairline">
+    <section id="faq" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-4">
           <SectionHeader eyebrow="FAQ" title={<>Perguntas <span className="gradient-text">frequentes</span>.</>} description="Se ficou alguma dúvida, fale com o time — respondemos em horas úteis." />
@@ -1096,7 +1096,7 @@ function FAQItem({ q, a, last }: { q: string; a: string; last: boolean }) {
 /* ---------------- SOBRE ---------------- */
 function Sobre() {
   return (
-    <section id="sobre" className="relative py-24 border-t border-hairline">
+    <section id="sobre" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page grid lg:grid-cols-12 gap-12 items-start">
         <div className="lg:col-span-5">
           <SectionHeader eyebrow="Sobre a IPAXIS" title={<>Nascida para <span className="gradient-text">incorporação e construção</span> — não para todos os setores.</>} />
