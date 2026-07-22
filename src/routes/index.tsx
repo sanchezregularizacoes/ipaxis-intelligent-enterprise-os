@@ -1,31 +1,50 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import {
-  ArrowRight, Sparkles, Bot, Workflow, LineChart, ShieldCheck, Boxes,
-  MessageSquare, FileText, Users, Building2, Factory, Store, HeartPulse,
-  GraduationCap, Scale, Landmark, Wheat, Cpu, Truck, Home as HomeIcon,
-  Check, X, Plus, Minus, Menu, Zap, Database, Layers, Globe, Lock,
-  BarChart3, GitBranch, Wand2, Puzzle, Send, KeyRound, Activity,
-  Calendar, DollarSign, FileSignature, Bell, Rocket, ChevronRight,
+  ArrowRight, Bot, Workflow, ShieldCheck, MessageSquare, FileText, Users,
+  Building2, Check, X, Plus, Minus, Menu, Database, Layers, Lock,
+  BarChart3, Wand2, KeyRound, Calendar, DollarSign, FileSignature,
+  Bell, Rocket, ChevronRight, Home as HomeIcon, HardHat, Boxes,
+  LineChart, GitBranch, Globe, Sparkles, Cpu, Activity,
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import ipaxisMark from "@/assets/ipaxis-mark.png.asset.json";
 
+const ipaxisMarkUrl = `https://ipaxis-evolve.lovable.app${ipaxisMark.url}`;
 
 export const Route = createFileRoute("/")({
   component: Home,
   head: () => ({
     meta: [
-      { title: "IPAXIS — Sistema operacional inteligente para empresas" },
+      { title: "IPAXIS — Plataforma operacional para incorporadoras e construtoras" },
       {
         name: "description",
         content:
-          "CRM, IA, Automação, Financeiro, BI e Workflows em uma única plataforma. Elimine sistemas fragmentados e opere com inteligência de dados.",
+          "CRM de reservas, IA comercial, automação, financeiro de comissões e dashboards de VGV em uma única plataforma — feita para o ciclo de incorporação e vendas.",
       },
+      { property: "og:title", content: "IPAXIS — Plataforma operacional para incorporadoras e construtoras" },
+      { property: "og:description", content: "Do lead à entrega das chaves em um único ecossistema. CRM, IA, automação e financeiro para incorporadoras e construtoras." },
     ],
   }),
 });
 
+/* ---------------- LOGO ---------------- */
+function Logo({ className = "h-8 w-8" }: { className?: string }) {
+  return <img src={ipaxisMarkUrl} alt="IPAXIS" className={`${className} object-contain`} draggable={false} />;
+}
+
 /* ---------------- NAV ---------------- */
+const NAV_LINKS = [
+  { label: "Plataforma", href: "#plataforma" },
+  { label: "IA", href: "#ia" },
+  { label: "Automação", href: "#automacao" },
+  { label: "Builder", href: "#builder" },
+  { label: "Implantação", href: "#implantacao" },
+  { label: "Segurança", href: "#seguranca" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contato", href: "#contato" },
+];
+
 function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -36,18 +55,6 @@ function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = [
-    { label: "Plataforma", href: "#modulos" },
-    { label: "IA", href: "#ia" },
-    { label: "Automação", href: "#automacao" },
-    { label: "Builder", href: "#builder" },
-    { label: "Segmentos", href: "#segmentos" },
-    { label: "Segurança", href: "#seguranca" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Contato", href: "#contato" },
-  ];
-
-
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -57,15 +64,11 @@ function Nav() {
       <div className="container-page flex h-16 items-center gap-6">
         <a href="#top" className="flex items-center gap-2.5 shrink-0">
           <Logo />
-          <span className="text-[15px] font-semibold tracking-tight">IPAXIS</span>
+          <span className="font-display text-[15px] font-semibold tracking-tight">IPAXIS</span>
         </a>
         <nav className="hidden xl:flex items-center gap-1 flex-1 justify-center min-w-0">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="px-3 py-2 text-[13px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
-            >
+          {NAV_LINKS.map((l) => (
+            <a key={l.href} href={l.href} className="px-3 py-2 text-[13px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
               {l.label}
             </a>
           ))}
@@ -77,7 +80,7 @@ function Nav() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand/10 px-4 py-2 text-[13px] font-medium text-foreground hover:bg-brand/20 hover:border-brand/60 transition"
           >
-            Acessar
+            Entrar
           </a>
           <a
             href="#contato"
@@ -87,24 +90,15 @@ function Nav() {
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </a>
         </div>
-        <button
-          className="xl:hidden p-2 rounded-md hairline ml-auto"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Menu"
-        >
+        <button className="xl:hidden p-2 rounded-md hairline ml-auto" onClick={() => setOpen((v) => !v)} aria-label="Menu">
           <Menu className="h-4 w-4" />
         </button>
       </div>
       {open && (
         <div className="xl:hidden border-t border-hairline bg-background/95 backdrop-blur-xl">
           <div className="container-page py-3 flex flex-col">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="py-2 text-sm text-muted-foreground"
-              >
+            {NAV_LINKS.map((l) => (
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="py-2 text-sm text-muted-foreground">
                 {l.label}
               </a>
             ))}
@@ -115,7 +109,7 @@ function Nav() {
               onClick={() => setOpen(false)}
               className="mt-3 inline-flex items-center justify-center rounded-full border border-brand/40 bg-brand/10 px-4 py-2.5 text-sm font-medium text-foreground"
             >
-              Acessar
+              Entrar
             </a>
             <a
               href="#contato"
@@ -131,21 +125,21 @@ function Nav() {
   );
 }
 
-import ipaxisMark from "@/assets/ipaxis-mark.png.asset.json";
-
-const ipaxisMarkUrl = `https://ipaxis-evolve.lovable.app${ipaxisMark.url}`;
-
-function Logo({ className = "h-8 w-8" }: { className?: string }) {
+/* ---------------- SECTION SHELL ---------------- */
+function SectionHeader({ eyebrow, title, description }: { eyebrow?: string; title: ReactNode; description?: ReactNode }) {
   return (
-    <img
-      src={ipaxisMarkUrl}
-      alt="IPAXIS"
-      className={`${className} object-contain`}
-      draggable={false}
-    />
+    <div className="max-w-3xl">
+      {eyebrow && (
+        <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+          <span className="h-1.5 w-1.5 rounded-full gradient-brand" />
+          {eyebrow}
+        </div>
+      )}
+      <h2 className="font-display mt-5 text-3xl md:text-5xl font-semibold tracking-tight leading-[1.05]">{title}</h2>
+      {description && <p className="mt-5 text-base md:text-lg text-muted-foreground leading-relaxed">{description}</p>}
+    </div>
   );
 }
-
 
 /* ---------------- HERO ---------------- */
 function Hero() {
@@ -158,54 +152,42 @@ function Hero() {
           <div className="lg:col-span-6">
             <Reveal>
               <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-teal animate-pulse" />
-                Sistema operacional para empresas
+                <span className="h-1.5 w-1.5 rounded-full gradient-brand" />
+                Para incorporadoras e construtoras
               </div>
             </Reveal>
             <Reveal delay={80}>
-              <h1 className="mt-6 text-[44px] sm:text-[56px] lg:text-[64px] leading-[1.02] font-semibold tracking-[-0.03em]">
-                Transformando processos em{" "}
-                <span className="gradient-text">inteligência</span>.
+              <h1 className="font-display mt-6 text-5xl md:text-6xl xl:text-7xl font-semibold tracking-tight leading-[0.98]">
+                Transformando processos em <span className="gradient-text">inteligência</span>.
               </h1>
             </Reveal>
             <Reveal delay={160}>
-              <p className="mt-6 text-[17px] leading-relaxed text-muted-foreground max-w-xl">
-                A plataforma empresarial que une CRM, Inteligência Artificial,
-                Automação e Gestão em um único ecossistema — onde cada área da
-                sua empresa opera com dados, contexto e autonomia.
+              <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
+                A plataforma operacional que conecta CRM de reservas, IA comercial, automação e financeiro em um único ecossistema — pensada para o ciclo de incorporação e vendas.
               </p>
             </Reveal>
             <Reveal delay={220}>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a
-                  href="#contato"
-                  className="group inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-medium text-brand-foreground glow-brand hover:brightness-110 transition"
-                >
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#contato" className="group inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-medium text-brand-foreground shadow-[0_16px_40px_-16px_rgba(36,123,255,0.8)] hover:brightness-110 transition">
                   Solicitar demonstração
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </a>
-                <a
-                  href="#modulos"
-                  className="inline-flex items-center gap-2 rounded-full hairline px-5 py-3 text-sm font-medium hover:bg-white/5 transition"
-                >
-                  Conhecer plataforma
+                <a href="#plataforma" className="inline-flex items-center gap-2 rounded-full hairline px-5 py-3 text-sm font-medium hover:bg-white/5 transition">
+                  Explorar a plataforma
                 </a>
               </div>
             </Reveal>
             <Reveal delay={280}>
-              <div className="mt-10 flex items-center gap-6 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                <span>LGPD</span><span className="opacity-40">•</span>
-                <span>ISO-ready</span><span className="opacity-40">•</span>
-                <span>99.99% uptime</span><span className="opacity-40">•</span>
-                <span>API-first</span>
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-teal" /> LGPD por design</span>
+                <span className="inline-flex items-center gap-1.5"><Globe className="h-3.5 w-3.5 text-teal" /> API-first</span>
+                <span className="inline-flex items-center gap-1.5"><Building2 className="h-3.5 w-3.5 text-teal" /> Feita para incorporação</span>
               </div>
             </Reveal>
           </div>
 
           <div className="lg:col-span-6">
-            <Reveal delay={200}>
-              <HeroMockup />
-            </Reveal>
+            <HeroMockup />
           </div>
         </div>
       </div>
@@ -214,375 +196,318 @@ function Hero() {
 }
 
 function HeroMockup() {
+  const orbit = [
+    { icon: Users, label: "CRM", angle: 0 },
+    { icon: Bot, label: "IA", angle: 60 },
+    { icon: DollarSign, label: "Financeiro", angle: 120 },
+    { icon: BarChart3, label: "Dashboards", angle: 180 },
+    { icon: FileSignature, label: "Contratos", angle: 240 },
+    { icon: Workflow, label: "Automação", angle: 300 },
+  ];
   return (
-    <div className="relative animate-float">
-      <div className="absolute -inset-6 bg-gradient-to-tr from-brand/30 via-sky/20 to-teal/20 blur-3xl rounded-[32px]" />
-      <div className="relative rounded-2xl glass overflow-hidden shadow-2xl">
-        {/* window chrome */}
-        <div className="flex items-center gap-1.5 px-4 py-3 border-b border-hairline">
-          <div className="h-2.5 w-2.5 rounded-full bg-white/15" />
-          <div className="h-2.5 w-2.5 rounded-full bg-white/15" />
-          <div className="h-2.5 w-2.5 rounded-full bg-white/15" />
-          <div className="ml-3 flex-1 h-6 rounded-md bg-white/5 flex items-center px-2 gap-2">
-            <Lock className="h-3 w-3 text-muted-foreground" />
-            <span className="text-[10px] text-muted-foreground">app.ipaxis.com/dashboard</span>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-12 gap-3 p-4">
-          {/* sidebar */}
-          <aside className="col-span-2 space-y-1.5">
-            {[LineChart, Users, GitBranch, Bot, Calendar, DollarSign, FileText, ShieldCheck].map((I, i) => (
-              <div
-                key={i}
-                className={`h-7 rounded-md flex items-center justify-center ${
-                  i === 0 ? "bg-brand/20 text-sky" : "text-muted-foreground/70 hover:bg-white/5"
-                }`}
-              >
-                <I className="h-3.5 w-3.5" />
-              </div>
-            ))}
-          </aside>
-
-          {/* main */}
-          <div className="col-span-10 space-y-3">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="text-[10px] text-muted-foreground uppercase tracking-widest">Dashboard</div>
-                <div className="text-[13px] font-semibold mt-0.5">Visão executiva</div>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <div className="h-6 w-6 rounded-full bg-gradient-to-br from-sky to-teal" />
-                <div className="h-6 w-6 rounded-full bg-white/10" />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-4 gap-2">
-              {[
-                { l: "Receita", v: "R$ 4.2M", d: "+18%" },
-                { l: "Leads", v: "1.284", d: "+9%" },
-                { l: "Conversão", v: "27,4%", d: "+3,1pp" },
-                { l: "Tickets IA", v: "9.410", d: "+42%" },
-              ].map((k) => (
-                <div key={k.l} className="rounded-lg hairline p-2.5 bg-white/[0.02]">
-                  <div className="text-[9px] uppercase tracking-wider text-muted-foreground">{k.l}</div>
-                  <div className="text-[13px] font-semibold mt-1">{k.v}</div>
-                  <div className="text-[9px] text-teal mt-0.5">{k.d}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-5 gap-2">
-              <div className="col-span-3 rounded-lg hairline p-3 bg-white/[0.02]">
-                <div className="flex items-center justify-between">
-                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Pipeline</div>
-                  <div className="text-[9px] text-muted-foreground">últimos 30 dias</div>
-                </div>
-                <MiniChart />
-              </div>
-              <div className="col-span-2 rounded-lg hairline p-3 bg-white/[0.02]">
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">IA · WhatsApp</div>
-                <div className="mt-2 space-y-1.5">
-                  {[
-                    { t: "Cliente qualificado", c: "sky" },
-                    { t: "Reunião agendada", c: "teal" },
-                    { t: "Proposta enviada", c: "brand" },
-                  ].map((it) => (
-                    <div key={it.t} className="flex items-center gap-2 text-[10px]">
-                      <span
-                        className="h-1.5 w-1.5 rounded-full"
-                        style={{ background: `var(--${it.c})` }}
-                      />
-                      <span className="text-foreground/80">{it.t}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-lg hairline p-3 bg-white/[0.02]">
-              <div className="flex items-center justify-between mb-2">
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Funil comercial</div>
-                <div className="text-[9px] text-muted-foreground">tempo real</div>
-              </div>
-              <div className="grid grid-cols-5 gap-1.5">
-                {["Novo","Contato","Qualif.","Proposta","Fechado"].map((s, i) => (
-                  <div key={s} className="rounded-md bg-white/[0.03] p-2">
-                    <div className="text-[9px] text-muted-foreground">{s}</div>
-                    <div className="text-[11px] font-semibold mt-1">{[412,318,214,142,86][i]}</div>
-                    <div className="mt-1.5 h-1 rounded-full bg-white/5 overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-brand via-sky to-teal"
-                        style={{ width: `${[92,74,56,38,22][i]}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+    <div className="relative aspect-[5/4] w-full">
+      {/* Orbit ring */}
+      <div className="absolute inset-6 rounded-full border border-hairline animate-[spin_60s_linear_infinite]" style={{ animationDirection: "reverse" }}>
+        {orbit.map((o, i) => (
+          <div
+            key={i}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={{ transform: `rotate(${o.angle}deg) translate(0, -46%) rotate(-${o.angle}deg)` }}
+          >
+            <div className="glass rounded-xl px-2.5 py-1.5 flex items-center gap-1.5 text-[11px] text-foreground/90 shadow-lg">
+              <o.icon className="h-3.5 w-3.5 text-teal" />
+              {o.label}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* floating cards */}
-      <div className="hidden md:block absolute -left-6 top-1/3 rounded-xl glass p-3 shadow-xl animate-float" style={{ animationDelay: "-2s" }}>
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-brand/20 flex items-center justify-center">
-            <Bot className="h-4 w-4 text-sky" />
-          </div>
-          <div>
-            <div className="text-[10px] uppercase tracking-wider text-muted-foreground">IA respondeu</div>
-            <div className="text-[11px] font-medium">142 conversas hoje</div>
-          </div>
-        </div>
-      </div>
-      <div className="hidden md:block absolute -right-4 bottom-10 rounded-xl glass p-3 shadow-xl animate-float" style={{ animationDelay: "-4s" }}>
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-teal/20 flex items-center justify-center">
-            <DollarSign className="h-4 w-4 text-teal" />
-          </div>
-          <div>
-            <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Financeiro</div>
-            <div className="text-[11px] font-medium">+R$ 128.400 hoje</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function MiniChart() {
-  const pts = [12,18,14,22,28,24,32,30,38,44,42,52,58,54,68,74,70,82];
-  const max = Math.max(...pts);
-  const path = pts.map((v, i) => `${i === 0 ? "M" : "L"} ${(i / (pts.length - 1)) * 100} ${100 - (v / max) * 90}`).join(" ");
-  return (
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="mt-2 w-full h-24">
-      <defs>
-        <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0%" stopColor="var(--sky)" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="var(--sky)" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <path d={`${path} L 100 100 L 0 100 Z`} fill="url(#g)" />
-      <path d={path} fill="none" stroke="var(--sky)" strokeWidth="1.2" />
-    </svg>
-  );
-}
-
-/* ---------------- MARQUEE ---------------- */
-function Marquee() {
-  const items = ["CRM","IA CORPORATIVA","AUTOMAÇÃO","BI","WORKFLOW","FINANCEIRO","WHATSAPP","API","DASHBOARDS","LGPD","MULTIEMPRESA","ASSINATURAS"];
-  return (
-    <div className="border-y border-hairline py-6 overflow-hidden">
-      <div className="flex animate-marquee whitespace-nowrap gap-14">
-        {[...items, ...items].map((t, i) => (
-          <span key={i} className="text-[11px] tracking-[0.24em] text-muted-foreground/70">{t}</span>
         ))}
       </div>
-    </div>
-  );
-}
 
-/* ---------------- SECTION HELPERS ---------------- */
-function Kicker({ children }: { children: ReactNode }) {
-  return (
-    <div className="inline-flex items-center gap-2 rounded-full hairline px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-      {children}
-    </div>
-  );
-}
-
-function SectionTitle({ kicker, title, sub }: { kicker: string; title: ReactNode; sub?: ReactNode }) {
-  return (
-    <div className="max-w-3xl">
-      <Kicker>{kicker}</Kicker>
-      <h2 className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.025em] leading-[1.05]">
-        {title}
-      </h2>
-      {sub && <p className="mt-5 text-[16px] text-muted-foreground leading-relaxed max-w-2xl">{sub}</p>}
-    </div>
-  );
-}
-
-/* ---------------- PROBLEM ---------------- */
-function Problem() {
-  const chips = ["CRM","Financeiro","WhatsApp","Planilhas","Email marketing","BI terceirizado","ERP","Documentos","Automação","Suporte","RH","Comissões"];
-  return (
-    <section className="py-28">
-      <div className="container-page">
-        <Reveal>
-          <SectionTitle
-            kicker="O problema"
-            title={<>Sua empresa opera em <span className="gradient-text">dezenas de sistemas</span> desconectados.</>}
-            sub="CRM separado. Financeiro separado. WhatsApp separado. Planilhas em todos os lados. Informação descentralizada gera retrabalho, perda de produtividade e decisões baseadas em dados incompletos."
-          />
-        </Reveal>
-
-        <div className="mt-14 grid lg:grid-cols-2 gap-10 items-center">
-          <Reveal>
-            <div className="relative rounded-2xl hairline p-8 bg-white/[0.02]">
-              <div className="flex flex-wrap gap-2">
-                {chips.map((c, i) => (
-                  <span
-                    key={c}
-                    className="rounded-lg hairline px-3 py-1.5 text-xs text-muted-foreground bg-white/[0.02]"
-                    style={{ transform: `rotate(${(i % 5 - 2) * 1.2}deg)` }}
-                  >
-                    {c}
-                  </span>
-                ))}
-              </div>
-              <div className="absolute -top-3 -right-3 rounded-full hairline glass px-3 py-1 text-[10px] uppercase tracking-wider text-muted-foreground">
-                Antes da IPAXIS
-              </div>
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <ul className="space-y-4">
-              {[
-                ["Fragmentação de dados", "Informação espalhada entre planilhas, e-mails e sistemas."],
-                ["Retrabalho operacional", "Times duplicam esforço e perdem contexto."],
-                ["Decisões cegas", "Relatórios chegam tarde ou com dados divergentes."],
-                ["Custo invisível", "Licenças, integrações e manutenção que se acumulam."],
-              ].map(([t, d]) => (
-                <li key={t} className="flex gap-4">
-                  <div className="mt-1 h-8 w-8 rounded-lg hairline flex items-center justify-center bg-white/[0.02]">
-                    <X className="h-4 w-4 text-destructive" />
-                  </div>
-                  <div>
-                    <div className="text-[15px] font-medium">{t}</div>
-                    <div className="text-sm text-muted-foreground mt-0.5">{d}</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+      {/* Central dashboard card */}
+      <div className="absolute inset-16 md:inset-20 rounded-2xl glass p-4 shadow-2xl glow-brand">
+        <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-teal animate-pulse" /> Empreendimento Aurora</span>
+          <span>Hoje</span>
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- SOLUTION ---------------- */
-function Solution() {
-  const nodes = [
-    { l: "CRM", top: "10%", left: "6%" },
-    { l: "Financeiro", top: "70%", left: "10%" },
-    { l: "WhatsApp", top: "20%", left: "88%" },
-    { l: "Planilhas", top: "78%", left: "82%" },
-    { l: "BI", top: "45%", left: "0%" },
-    { l: "Automação", top: "5%", left: "50%" },
-    { l: "Documentos", top: "88%", left: "45%" },
-    { l: "ERP", top: "48%", left: "96%" },
-  ];
-  return (
-    <section id="solucao" className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 radial-brand opacity-60 pointer-events-none" />
-      <div className="container-page relative">
-        <Reveal>
-          <SectionTitle
-            kicker="Nossa solução"
-            title={<>Uma única plataforma. <br className="hidden sm:block" />Todos os processos. <span className="gradient-text">Uma única inteligência.</span></>}
-          />
-        </Reveal>
-
-        <div className="mt-16 relative aspect-[16/10] max-w-4xl mx-auto">
-          {/* connecting lines */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            {nodes.map((n, i) => (
-              <line
-                key={i}
-                x1={parseFloat(n.left)}
-                y1={parseFloat(n.top)}
-                x2="50"
-                y2="50"
-                stroke="url(#lg)"
-                strokeWidth="0.15"
-                strokeDasharray="0.6 0.6"
-              />
-            ))}
-            <defs>
-              <linearGradient id="lg" x1="0" x2="1">
-                <stop offset="0%" stopColor="var(--sky)" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="var(--teal)" stopOpacity="0.6" />
-              </linearGradient>
-            </defs>
-          </svg>
-
-          {nodes.map((n) => (
-            <div
-              key={n.l}
-              className="absolute -translate-x-1/2 -translate-y-1/2 rounded-lg glass px-3 py-1.5 text-xs text-muted-foreground"
-              style={{ top: n.top, left: n.left }}
-            >
-              {n.l}
-            </div>
-          ))}
-
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="relative">
-              <div className="absolute inset-0 rounded-full animate-pulse-ring" />
-              <div className="relative h-40 w-40 rounded-full glass glow-brand flex items-center justify-center">
-                <div className="h-28 w-28 rounded-full bg-gradient-to-br from-brand via-sky to-teal flex items-center justify-center">
-                  <div className="h-24 w-24 rounded-full bg-background flex items-center justify-center">
-                    <Logo />
-                  </div>
+        <div className="mt-3 grid grid-cols-3 gap-2">
+          <MiniStat label="VGV mês" value="R$ 42,8M" trend="+12%" />
+          <MiniStat label="Reservas" value="38" trend="+7" />
+          <MiniStat label="Velocidade" value="1,8 u/dia" trend="+0,3" />
+        </div>
+        <div className="mt-3 rounded-lg bg-background/40 p-2.5 border border-hairline">
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5">Funil de vendas</div>
+          <div className="grid grid-cols-6 gap-1">
+            {["Novo","Contato","Qualif.","Proposta","Reserva","Contrato"].map((s, i) => (
+              <div key={s} className="flex flex-col items-center gap-1">
+                <div className="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
+                  <div className="h-full gradient-brand" style={{ width: `${100 - i * 14}%` }} />
                 </div>
+                <span className="text-[9px] text-muted-foreground truncate w-full text-center">{s}</span>
               </div>
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.18em] text-muted-foreground whitespace-nowrap">
-                IPAXIS · Núcleo inteligente
-              </div>
-            </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-2 grid grid-cols-2 gap-2">
+          <div className="rounded-lg bg-background/40 p-2 border border-hairline">
+            <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground"><MessageSquare className="h-3 w-3 text-teal" /> IA no WhatsApp</div>
+            <div className="mt-1 text-[11px] text-foreground/90">"Torre B, 3 dorm., R$ 720k. Posso agendar a visita?"</div>
+          </div>
+          <div className="rounded-lg bg-background/40 p-2 border border-hairline">
+            <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground"><DollarSign className="h-3 w-3 text-teal" /> Comissões hoje</div>
+            <div className="mt-1 text-[11px] text-foreground/90">R$ 128.400 · 12 corretores</div>
           </div>
         </div>
       </div>
+
+      {/* Floating status pill */}
+      <div className="absolute -top-2 right-4 glass rounded-full px-3 py-1.5 text-[11px] flex items-center gap-2 animate-float">
+        <Bell className="h-3 w-3 text-teal" />
+        Nova reserva · Unidade 1204
+      </div>
+    </div>
+  );
+}
+
+function MiniStat({ label, value, trend }: { label: string; value: string; trend: string }) {
+  return (
+    <div className="rounded-lg bg-background/40 p-2 border border-hairline">
+      <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{label}</div>
+      <div className="mt-0.5 font-display text-sm font-semibold">{value}</div>
+      <div className="text-[10px] text-teal">{trend}</div>
+    </div>
+  );
+}
+
+/* ---------------- PROBLEMA ---------------- */
+function Problema() {
+  const items = [
+    { icon: Layers, title: "Espelho de vendas em planilha", desc: "Cópias desatualizadas, unidades vendidas em duplicidade, retrabalho entre comercial e financeiro." },
+    { icon: Users, title: "CRM genérico que não entende unidade", desc: "Ferramentas pensadas para vendas B2B, sem torre, bloco, tipologia ou tabela vigente." },
+    { icon: MessageSquare, title: "WhatsApp fora do CRM", desc: "Corretor conversa em conta pessoal, histórico se perde e o lead nunca chega ao funil." },
+    { icon: DollarSign, title: "Comissão calculada no Excel", desc: "Regras complexas por corretor e imobiliária parceira que ninguém consegue auditar." },
+    { icon: HardHat, title: "Obra e vendas desconectadas", desc: "Cronograma físico-financeiro em uma ferramenta, entrega e repasse em outra." },
+    { icon: Activity, title: "Decisão com dado velho", desc: "VGV do mês fechado só na virada. Diretoria decide olhando o passado." },
+  ];
+  return (
+    <section className="relative py-24 border-t border-hairline">
+      <div className="container-page">
+        <SectionHeader
+          eyebrow="A nova realidade"
+          title={<>A operação da sua incorporadora <span className="text-muted-foreground">roda em dezenas de ferramentas desconectadas.</span></>}
+          description="Cada sistema gera retrabalho, atraso entre reserva e contrato, e decisões tomadas com dados desatualizados. A IPAXIS nasceu para eliminar essa fragmentação especificamente no ciclo de incorporação e vendas."
+        />
+        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {items.map((it, i) => (
+            <Reveal key={it.title} delay={i * 60}>
+              <div className="h-full rounded-2xl hairline p-6 bg-surface/40 hover:bg-surface/70 transition">
+                <it.icon className="h-5 w-5 text-teal" />
+                <h3 className="font-display mt-4 text-lg font-semibold">{it.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{it.desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
 
-/* ---------------- MODULES ---------------- */
-function Modules() {
-  const groups: { title: string; icon: React.ComponentType<{ className?: string }>; items: string[] }[] = [
-    { title: "CRM", icon: Users, items: ["Comercial","Incorporadora","Imobiliário","Industrial","Serviços","Personalizado"] },
-    { title: "Vendas & Pipeline", icon: GitBranch, items: ["Pipeline","Funil","Leads","Clientes","Reservas","Contratos"] },
-    { title: "Operação", icon: Calendar, items: ["Agenda","Tarefas","Documentos","Assinaturas","Central de Arquivos","Notificações"] },
-    { title: "Financeiro", icon: DollarSign, items: ["Fluxo de Caixa","Comissões","Recebimentos","Contas a pagar","Conciliação","Boletos"] },
-    { title: "Dashboards & BI", icon: BarChart3, items: ["Power Analytics","KPIs","Tempo real","CEO","Diretores","Gestores"] },
-    { title: "Construtores visuais", icon: Wand2, items: ["Workflow Builder","Dashboard Builder","Form Builder","Card Builder","Report Builder","Permission Builder"] },
-    { title: "IA Corporativa", icon: Bot, items: ["Assistente","Base de conhecimento","IA Comercial","IA Atendimento","IA Interna","Análise comportamental"] },
-    { title: "Integrações", icon: Puzzle, items: ["API","Webhooks","WhatsApp","Email","SMS","ERP externos"] },
-    { title: "Governança", icon: ShieldCheck, items: ["LGPD","Logs","Auditoria","Permissões","Multiempresa","Multiusuário"] },
-    { title: "Plataforma", icon: Layers, items: ["Aplicativo","PWA","Multi-dispositivo","Alta disponibilidade","Escalabilidade","SSO"] },
+/* ---------------- ECOSSISTEMA ---------------- */
+function Ecossistema() {
+  const nodes = [
+    { icon: Users, label: "CRM de Reservas" },
+    { icon: Bot, label: "IA Comercial" },
+    { icon: DollarSign, label: "Financeiro" },
+    { icon: Workflow, label: "Automação" },
+    { icon: BarChart3, label: "Dashboards" },
+    { icon: FileSignature, label: "Contratos" },
+    { icon: Globe, label: "API/Integrações" },
+    { icon: HardHat, label: "Obra & Vendas" },
   ];
-
   return (
-    <section id="modulos" className="py-28 relative">
-      <div className="container-page">
-        <Reveal>
-          <SectionTitle
-            kicker="Plataforma"
-            title={<>Módulos que operam como <span className="gradient-text">um sistema operacional empresarial</span>.</>}
-            sub="Cada módulo é independente, mas todos compartilham dados, contexto e inteligência. Ative, personalize e evolua sem depender de integrações externas."
-          />
-        </Reveal>
+    <section className="relative py-24 border-t border-hairline overflow-hidden">
+      <div className="absolute inset-0 radial-brand opacity-40 pointer-events-none" />
+      <div className="container-page relative">
+        <div className="text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full gradient-brand" />
+            Ecossistema IPAXIS
+          </div>
+          <h2 className="font-display mt-5 text-4xl md:text-5xl font-semibold tracking-tight leading-[1.05]">
+            Uma base de dados. Uma inteligência.<br /><span className="gradient-text">Uma plataforma.</span>
+          </h2>
+          <p className="mt-5 text-muted-foreground">Tudo o que sua incorporadora precisa em um único núcleo — conectado por natureza, não por integração improvisada.</p>
+        </div>
 
-        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="relative mt-16 aspect-square max-w-2xl mx-auto">
+          <div className="absolute inset-1/4 rounded-full border border-hairline" />
+          <div className="absolute inset-8 rounded-full border border-hairline" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative rounded-2xl glass p-6 glow-brand flex items-center gap-3">
+              <Logo className="h-9 w-9" />
+              <div>
+                <div className="font-display text-sm font-semibold">IPAXIS Core</div>
+                <div className="text-[10px] text-muted-foreground">Núcleo operacional</div>
+              </div>
+            </div>
+          </div>
+          {nodes.map((n, i) => {
+            const angle = (i / nodes.length) * 360;
+            return (
+              <div
+                key={n.label}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                style={{ transform: `rotate(${angle}deg) translate(0, -44%) rotate(-${angle}deg)` }}
+              >
+                <div className="glass rounded-xl px-3 py-2 flex items-center gap-2 text-xs shadow-lg">
+                  <n.icon className="h-4 w-4 text-teal" />
+                  <span className="whitespace-nowrap">{n.label}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- COMO FUNCIONA ---------------- */
+function ComoFunciona() {
+  const steps = [
+    { title: "Entendemos sua operação", desc: "Diagnóstico do funil, do time e das ferramentas atuais.", icon: Sparkles },
+    { title: "Mapeamos o funil e o espelho", desc: "Cada etapa do lead até o contrato assinado.", icon: GitBranch },
+    { title: "Personalizamos por empreendimento", desc: "Torres, blocos, unidades, tabela vigente.", icon: Boxes },
+    { title: "Treinamos sua IA", desc: "Memoriais, políticas comerciais, tabela e minutas.", icon: Bot },
+    { title: "Automatizamos comercial e financeiro", desc: "Distribuição, follow-up, comissão, boletos.", icon: Workflow },
+    { title: "Acompanhamos a evolução", desc: "Melhoria contínua a cada lançamento.", icon: LineChart },
+  ];
+  return (
+    <section className="relative py-24 border-t border-hairline">
+      <div className="container-page">
+        <SectionHeader eyebrow="Como funciona" title={<>Do diagnóstico à evolução — <span className="gradient-text">sem virar projeto de TI</span>.</>} />
+        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {steps.map((s, i) => (
+            <Reveal key={s.title} delay={i * 60}>
+              <div className="h-full rounded-2xl hairline p-6 bg-surface/40">
+                <div className="flex items-center justify-between">
+                  <s.icon className="h-5 w-5 text-teal" />
+                  <span className="font-display text-2xl font-semibold text-muted-foreground/50">0{i + 1}</span>
+                </div>
+                <h3 className="font-display mt-4 text-lg font-semibold">{s.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- IMPLANTAÇÃO ---------------- */
+function Implantacao() {
+  const phases = [
+    "Diagnóstico do funil, espelho de vendas e sistemas atuais",
+    "Modelagem de empreendimentos, torres e unidades",
+    "Parametrização de comissionamento e regras comerciais",
+    "Migração da base atual (leads, unidades, contratos)",
+    "Treinamento da IA com tabela de vendas, memorial e políticas",
+    "Go Live acompanhado pela equipe IPAXIS",
+    "Suporte evolutivo contínuo conforme novos lançamentos",
+  ];
+  return (
+    <section id="implantacao" className="relative py-24 border-t border-hairline">
+      <div className="container-page grid lg:grid-cols-12 gap-12 items-start">
+        <div className="lg:col-span-5">
+          <SectionHeader
+            eyebrow="Implantação"
+            title={<>Sua operação no ar <span className="gradient-text">com método</span>.</>}
+            description="Um processo estruturado, conduzido por especialistas em incorporação — não um onboarding genérico. Você não precisa de equipe técnica para começar."
+          />
+        </div>
+        <div className="lg:col-span-7">
+          <ol className="relative border-l border-hairline pl-6 space-y-5">
+            {phases.map((p, i) => (
+              <Reveal as="li" key={p} delay={i * 50}>
+                <span className="absolute -left-[9px] mt-1.5 h-4 w-4 rounded-full gradient-brand ring-4 ring-background" />
+                <div className="rounded-xl hairline bg-surface/40 p-4">
+                  <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Fase {String(i + 1).padStart(2, "0")}</div>
+                  <div className="mt-1 font-display text-base font-semibold">{p}</div>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- PLATAFORMA (MÓDULOS) ---------------- */
+function Plataforma() {
+  const groups = [
+    {
+      title: "Relacionamento",
+      icon: Users,
+      items: ["CRM de Reservas", "Leads", "Corretores e imobiliárias parceiras", "Clientes", "Agenda de visitas"],
+    },
+    {
+      title: "Operação",
+      icon: Workflow,
+      items: ["Espelho de vendas em tempo real", "Workflows", "Tarefas", "Documentos", "Assinatura eletrônica de contratos", "Central de arquivos", "Notificações"],
+    },
+    {
+      title: "Financeiro",
+      icon: DollarSign,
+      items: ["Comissionamento", "Recebíveis", "Contas a pagar", "Fluxo de caixa por empreendimento", "Conciliação", "Boletos"],
+    },
+    {
+      title: "Analytics / BI",
+      icon: BarChart3,
+      items: ["Dashboard de VGV", "Velocidade de vendas", "KPIs por torre/empreendimento", "Visão em tempo real para CEO, diretores e obra"],
+    },
+    {
+      title: "Construtores visuais",
+      icon: Wand2,
+      items: ["Workflow Builder", "Dashboard Builder", "Form Builder", "Card Builder", "Report Builder", "Permission Builder"],
+    },
+    {
+      title: "Integrações",
+      icon: Globe,
+      items: ["API", "Webhooks", "WhatsApp", "E-mail", "SMS", "Portais (Viva Real, Zap, OLX)", "ERPs de construção"],
+    },
+    {
+      title: "Governança",
+      icon: ShieldCheck,
+      items: ["LGPD", "Logs", "Auditoria", "Permissões granulares", "Multiempreendimento", "Multiusuário", "SSO"],
+    },
+    {
+      title: "Plataforma",
+      icon: Cpu,
+      items: ["Aplicativo iOS/Android", "PWA", "Multi-dispositivo", "Alta disponibilidade", "Escalabilidade"],
+    },
+  ];
+  return (
+    <section id="plataforma" className="relative py-24 border-t border-hairline">
+      <div className="container-page">
+        <SectionHeader
+          eyebrow="Plataforma"
+          title={<>Todos os módulos que a operação de <span className="gradient-text">incorporação</span> pede — em um único lugar.</>}
+          description="Cada módulo foi desenhado para o vocabulário do setor: torre, bloco, unidade, tipologia, tabela vigente, VGV, repasse, comissão."
+        />
+        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {groups.map((g, i) => (
             <Reveal key={g.title} delay={i * 40}>
-              <div className="group relative rounded-2xl hairline bg-white/[0.02] p-6 hover:bg-white/[0.04] transition h-full">
-                <div className="absolute inset-x-6 -top-px h-px bg-gradient-to-r from-transparent via-sky/60 to-transparent opacity-0 group-hover:opacity-100 transition" />
-                <div className="flex items-center justify-between">
-                  <div className="h-10 w-10 rounded-xl bg-white/[0.03] hairline flex items-center justify-center">
-                    <g.icon className="h-4.5 w-4.5 text-sky" />
-                  </div>
-                  <ChevronRight className="h-4 w-4 text-muted-foreground/50 transition group-hover:translate-x-0.5 group-hover:text-foreground" />
+              <div className="h-full rounded-2xl hairline bg-surface/40 p-5 hover:bg-surface/70 transition">
+                <div className="inline-flex items-center gap-2 rounded-lg gradient-brand/10 p-2">
+                  <g.icon className="h-4 w-4 text-teal" />
                 </div>
-                <div className="mt-5 text-[15px] font-semibold">{g.title}</div>
-                <ul className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1.5 text-[13px] text-muted-foreground">
+                <h3 className="font-display mt-4 text-base font-semibold">{g.title}</h3>
+                <ul className="mt-3 space-y-1.5">
                   {g.items.map((it) => (
-                    <li key={it} className="flex items-center gap-1.5">
-                      <span className="h-1 w-1 rounded-full bg-muted-foreground/50" />
-                      {it}
+                    <li key={it} className="text-xs text-muted-foreground flex items-start gap-2">
+                      <ChevronRight className="h-3 w-3 mt-0.5 text-teal shrink-0" />
+                      <span>{it}</span>
                     </li>
                   ))}
                 </ul>
@@ -595,153 +520,133 @@ function Modules() {
   );
 }
 
-/* ---------------- AI ---------------- */
-function AISection() {
+/* ---------------- IA ---------------- */
+function IA() {
+  const corporativa = [
+    "Consulta documentos e memoriais descritivos",
+    "Interpreta contratos e minutas, sinaliza cláusulas fora do padrão",
+    "Resume reuniões de repasse de obra e comitê comercial, gera tarefas",
+    "Analisa VGV, velocidade de vendas, inadimplência e sinaliza desvios",
+    "Atende corretores, obra e financeiro como assistente interno",
+    "Faz análise comportamental de leads e clientes",
+  ];
+  const comercial = [
+    "Responde interessados sobre unidade, metragem e valor em tempo real, 24/7",
+    "Qualifica lead, trata objeções e agenda visita",
+    "Atualiza o CRM e notifica o corretor responsável",
+    "Dá suporte à imobiliária parceira sobre disponibilidade e tabela vigente",
+    "Faz follow-up e reativação de leads parados",
+    "Distribui leads entre corretores por regra ou fila",
+    "Transfere para atendimento humano no momento certo",
+  ];
   return (
-    <section id="ia" className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 radial-brand opacity-40 pointer-events-none" />
+    <section id="ia" className="relative py-24 border-t border-hairline overflow-hidden">
+      <div className="absolute inset-0 radial-brand opacity-30 pointer-events-none" />
       <div className="container-page relative">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5">
-            <Reveal>
-              <SectionTitle
-                kicker="IA Corporativa"
-                title={<>Uma Inteligência Artificial <span className="gradient-text">treinada para a sua empresa</span>.</>}
-                sub="A IA da IPAXIS aprende os documentos, procedimentos, produtos, políticas, contratos e regras da sua operação. Depois disso, responde clientes, vendedores e colaboradores exatamente conforme o que a sua empresa determina."
-              />
-            </Reveal>
-            <Reveal delay={100}>
-              <div className="mt-8 grid grid-cols-2 gap-2">
-                {["Documentos","Procedimentos","Produtos","Políticas","Contratos","Fluxos","Base de conhecimento","Regras internas"].map((t) => (
-                  <div key={t} className="rounded-lg hairline px-3 py-2 text-[13px] bg-white/[0.02]">
-                    {t}
-                  </div>
+        <SectionHeader
+          eyebrow="Inteligência Artificial"
+          title={<>Duas IAs. Um único cérebro <span className="gradient-text">treinado no seu empreendimento</span>.</>}
+          description="A IPAXIS opera duas frentes de IA que se conversam — uma para dentro da operação, outra para o cliente final e a imobiliária parceira."
+        />
+        <div className="mt-14 grid lg:grid-cols-2 gap-6">
+          <Reveal>
+            <div className="rounded-2xl hairline bg-surface/40 p-6 h-full">
+              <div className="flex items-center gap-3">
+                <div className="rounded-lg gradient-brand p-2"><Cpu className="h-4 w-4 text-white" /></div>
+                <div>
+                  <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">IA Corporativa</div>
+                  <h3 className="font-display text-xl font-semibold">Aprende toda a operação da incorporadora</h3>
+                </div>
+              </div>
+              <p className="mt-4 text-sm text-muted-foreground">Documentos, contratos, memoriais, políticas comerciais, procedimentos de obra — a IA lê e opera junto com o time interno.</p>
+              <ul className="mt-5 space-y-2">
+                {corporativa.map((c) => (
+                  <li key={c} className="text-sm flex items-start gap-2"><Check className="h-4 w-4 text-teal mt-0.5 shrink-0" /><span>{c}</span></li>
                 ))}
-              </div>
-            </Reveal>
-          </div>
-
-          <div className="lg:col-span-7">
-            <Reveal delay={120}>
-              <div className="relative rounded-2xl glass p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="h-8 w-8 rounded-lg bg-brand/20 flex items-center justify-center">
-                      <Bot className="h-4 w-4 text-sky" />
-                    </div>
-                    <div>
-                      <div className="text-[13px] font-semibold">IPAXIS · Assistente Comercial</div>
-                      <div className="text-[10px] text-muted-foreground">Treinada com 1.284 documentos internos</div>
-                    </div>
-                  </div>
-                  <span className="text-[10px] uppercase tracking-wider text-teal">online</span>
-                </div>
-
-                <div className="mt-6 space-y-3">
-                  <ChatBubble side="left">Bom dia! Tenho interesse no apartamento 1204 da Torre Aurora.</ChatBubble>
-                  <ChatBubble side="right" ai>
-                    Olá, Marina! O 1204 da Torre Aurora está disponível: 92m², 3 dorm.,
-                    R$ 984.000 — condições especiais até 30/11. Posso reservar uma visita
-                    para amanhã às 14h?
-                  </ChatBubble>
-                  <ChatBubble side="left">Consegue às 16h?</ChatBubble>
-                  <ChatBubble side="right" ai>
-                    Perfeito. Agendei sua visita para amanhã às 16h com o consultor
-                    Rafael. Um pré-cadastro foi criado no CRM e você receberá a
-                    confirmação por WhatsApp em instantes.
-                  </ChatBubble>
-                </div>
-
-                <div className="mt-6 grid grid-cols-3 gap-2">
-                  {[
-                    ["Qualificado", "sky"],
-                    ["Reunião criada", "teal"],
-                    ["CRM atualizado", "brand"],
-                  ].map(([t, c]) => (
-                    <div key={t} className="rounded-lg hairline bg-white/[0.02] p-2.5 flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full" style={{ background: `var(--${c})` }} />
-                      <span className="text-[11px]">{t}</span>
-                    </div>
-                  ))}
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal delay={100}>
+            <div className="rounded-2xl hairline bg-surface/40 p-6 h-full">
+              <div className="flex items-center gap-3">
+                <div className="rounded-lg gradient-brand p-2"><MessageSquare className="h-4 w-4 text-white" /></div>
+                <div>
+                  <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">IA Comercial · SDR IA</div>
+                  <h3 className="font-display text-xl font-semibold">Um SDR virtual que nunca dorme</h3>
                 </div>
               </div>
-            </Reveal>
-          </div>
+              <p className="mt-4 text-sm text-muted-foreground">Atua principalmente no WhatsApp, no site e nos portais. Qualifica, agenda e devolve para o corretor no momento certo.</p>
+              <ul className="mt-5 space-y-2">
+                {comercial.map((c) => (
+                  <li key={c} className="text-sm flex items-start gap-2"><Check className="h-4 w-4 text-teal mt-0.5 shrink-0" /><span>{c}</span></li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </div>
 
-        {/* IA Comercial */}
-        <div className="mt-20 grid md:grid-cols-3 gap-4">
-          {[
-            { i: MessageSquare, t: "Atendimento automático", d: "Responde 24/7 no WhatsApp, site e canais integrados, com tom de voz da marca." },
-            { i: Sparkles, t: "Qualificação inteligente", d: "Classifica leads, trata objeções, agenda reuniões e transfere para humano no momento certo." },
-            { i: Activity, t: "Pós-venda & reativação", d: "Follow-up automático, análise comportamental e reativação de base parada." },
-          ].map((c, i) => (
-            <Reveal key={c.t} delay={i * 80}>
-              <div className="rounded-2xl hairline bg-white/[0.02] p-6 h-full">
-                <div className="h-10 w-10 rounded-xl bg-white/[0.03] hairline flex items-center justify-center">
-                  <c.i className="h-4.5 w-4.5 text-teal" />
-                </div>
-                <div className="mt-5 text-[15px] font-semibold">{c.t}</div>
-                <div className="mt-2 text-sm text-muted-foreground leading-relaxed">{c.d}</div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        {/* Chat mockup */}
+        <Reveal delay={160}>
+          <div className="mt-10 max-w-3xl mx-auto rounded-2xl glass p-5">
+            <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground flex items-center gap-2">
+              <MessageSquare className="h-3.5 w-3.5 text-teal" /> WhatsApp · Empreendimento Aurora
+            </div>
+            <div className="mt-3 space-y-2 text-sm">
+              <ChatBubble side="in">Olá! Vi o anúncio do Aurora. Ainda tem 3 dormitórios na torre B?</ChatBubble>
+              <ChatBubble side="out">Oi, Marina! Sim — temos 4 unidades disponíveis na torre B, 3 dorm., 92 a 108 m², a partir de R$ 720.000. Prefere visita presencial ou tour online?</ChatBubble>
+              <ChatBubble side="in">Presencial, sábado de manhã.</ChatBubble>
+              <ChatBubble side="out">Perfeito. Sábado, 10h, com o corretor Rafael. Já registrei sua reserva de horário e ele acabou de ser notificado. 🚀</ChatBubble>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-function ChatBubble({ children, side, ai }: { children: ReactNode; side: "left" | "right"; ai?: boolean }) {
+function ChatBubble({ side, children }: { side: "in" | "out"; children: ReactNode }) {
+  const isOut = side === "out";
   return (
-    <div className={`flex ${side === "right" ? "justify-end" : "justify-start"}`}>
-      <div
-        className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-[13px] leading-relaxed ${
-          ai
-            ? "bg-gradient-to-br from-brand/25 to-sky/15 hairline"
-            : "bg-white/[0.04] hairline text-foreground/90"
-        }`}
-      >
+    <div className={`flex ${isOut ? "justify-end" : "justify-start"}`}>
+      <div className={`max-w-[80%] rounded-2xl px-3.5 py-2 text-[13px] ${isOut ? "gradient-brand text-white rounded-br-sm" : "bg-white/5 border border-hairline rounded-bl-sm"}`}>
         {children}
       </div>
     </div>
   );
 }
 
-/* ---------------- AUTOMATION ---------------- */
-function Automation() {
+/* ---------------- AUTOMAÇÃO ---------------- */
+function Automacao() {
   const steps = [
-    { i: MessageSquare, t: "Cliente entra", d: "Mensagem no WhatsApp." },
-    { i: Bot, t: "IA responde", d: "Qualifica e coleta dados." },
-    { i: Users, t: "CRM registra", d: "Lead + histórico + tags." },
-    { i: Calendar, t: "Agenda", d: "Cria tarefa e reunião." },
-    { i: DollarSign, t: "Financeiro", d: "Proposta e cobrança." },
-    { i: Bell, t: "Equipe notificada", d: "Push + email + card." },
-    { i: BarChart3, t: "Dashboard", d: "Indicador atualiza em tempo real." },
+    { icon: Globe, label: "Lead", sub: "Site · Portal · WhatsApp" },
+    { icon: Bot, label: "IA qualifica", sub: "Objeções e interesse" },
+    { icon: Users, label: "CRM registra", sub: "Distribui ao corretor" },
+    { icon: Calendar, label: "Agenda visita", sub: "Automático" },
+    { icon: FileSignature, label: "Proposta", sub: "Reserva + comissão" },
+    { icon: BarChart3, label: "VGV atualiza", sub: "Tempo real" },
+    { icon: Bell, label: "Gestor notificado", sub: "Instantâneo" },
   ];
   return (
-    <section id="automacao" className="py-28">
+    <section id="automacao" className="relative py-24 border-t border-hairline">
       <div className="container-page">
-        <Reveal>
-          <SectionTitle
-            kicker="Automação"
-            title={<>Processos que se executam <span className="gradient-text">sozinhos</span> — do primeiro contato ao pós-venda.</>}
-            sub="Cada evento na plataforma dispara ações em cadeia entre módulos. Sem integrações. Sem código. Sem intervenção."
-          />
-        </Reveal>
-
-        <div className="mt-14 relative">
-          <div className="absolute left-0 right-0 top-1/2 h-px bg-gradient-to-r from-transparent via-hairline to-transparent" />
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+        <SectionHeader
+          eyebrow="Automação"
+          title={<>Do primeiro clique ao <span className="gradient-text">VGV atualizado</span>, sem toque humano onde não precisa.</>}
+          description="Um fluxo comercial e financeiro que respira sozinho — o time só entra quando agrega valor."
+        />
+        <div className="mt-14">
+          <div className="flex gap-3 overflow-x-auto pb-4 lg:grid lg:grid-cols-7 lg:overflow-visible">
             {steps.map((s, i) => (
-              <Reveal key={s.t} delay={i * 60}>
-                <div className="relative rounded-2xl glass p-5 text-center">
-                  <div className="mx-auto h-10 w-10 rounded-xl bg-gradient-to-br from-brand/30 to-sky/20 flex items-center justify-center">
-                    <s.i className="h-4.5 w-4.5 text-sky" />
+              <Reveal key={s.label} delay={i * 60}>
+                <div className="relative min-w-[180px] rounded-2xl hairline bg-surface/40 p-4">
+                  <div className="flex items-center gap-2">
+                    <div className="rounded-lg gradient-brand p-1.5"><s.icon className="h-3.5 w-3.5 text-white" /></div>
+                    <span className="font-display text-sm font-semibold">{s.label}</span>
                   </div>
-                  <div className="mt-4 text-[13px] font-semibold">{s.t}</div>
-                  <div className="mt-1 text-[11px] text-muted-foreground">{s.d}</div>
-                  <div className="mt-3 text-[10px] uppercase tracking-wider text-muted-foreground/70">Etapa {i + 1}</div>
+                  <div className="mt-2 text-[11px] text-muted-foreground">{s.sub}</div>
+                  {i < steps.length - 1 && (
+                    <ArrowRight className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-teal" />
+                  )}
                 </div>
               </Reveal>
             ))}
@@ -754,108 +659,85 @@ function Automation() {
 
 /* ---------------- BUILDER ---------------- */
 function Builder() {
+  const builders = [
+    { icon: Workflow, name: "Workflow Builder", desc: "Desenhe processos de reserva, aprovação e repasse." },
+    { icon: FileText, name: "Form Builder", desc: "Capte leads com formulários conectados ao CRM." },
+    { icon: BarChart3, name: "Dashboard Builder", desc: "Monte dashboards de VGV, obra e financeiro." },
+    { icon: Boxes, name: "Card Builder", desc: "Customize o card de unidade, lead ou contrato." },
+    { icon: KeyRound, name: "Permission Builder", desc: "Regras por imobiliária, corretor ou diretoria." },
+    { icon: Wand2, name: "Automation Builder", desc: "Regras condicionais, gatilhos e ações." },
+  ];
   return (
-    <section id="builder" className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 grid-lines opacity-40 pointer-events-none" />
-      <div className="container-page relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <Reveal>
-            <SectionTitle
-              kicker="Construtor visual"
-              title={<>Sua operação, <span className="gradient-text">do seu jeito</span> — sem depender de TI.</>}
-              sub="A IPAXIS não é um CRM engessado. Você cria fluxos, campos, cards, dashboards, formulários e permissões visualmente. Cada empresa modela sua realidade."
-            />
-            <div className="mt-8 grid grid-cols-2 gap-3">
-              {[
-                ["Workflow Builder", Workflow],
-                ["Dashboard Builder", BarChart3],
-                ["Form Builder", FileText],
-                ["Card Builder", Layers],
-                ["Report Builder", LineChart],
-                ["Permission Builder", KeyRound],
-              ].map(([t, I]) => {
-                const Icon = I as React.ComponentType<{ className?: string }>;
-                return (
-                  <div key={t as string} className="rounded-lg hairline bg-white/[0.02] p-3 flex items-center gap-2.5">
-                    <Icon className="h-4 w-4 text-sky" />
-                    <span className="text-[13px]">{t as string}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <div className="relative rounded-2xl glass p-4">
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground px-2 mb-3">Workflow · Reserva de unidade</div>
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { t: "Trigger", d: "Formulário enviado", c: "sky" },
-                  { t: "Ação", d: "Cria oportunidade CRM", c: "brand" },
-                  { t: "Ação", d: "Envia WhatsApp", c: "teal" },
-                  { t: "Condição", d: "Se qualificado", c: "sky" },
-                  { t: "Ação", d: "Agenda visita", c: "brand" },
-                  { t: "Ação", d: "Notifica gestor", c: "teal" },
-                ].map((n, i) => (
-                  <div key={i} className="rounded-xl hairline bg-white/[0.03] p-3 relative">
-                    <div className="text-[9px] uppercase tracking-wider" style={{ color: `var(--${n.c})` }}>
-                      {n.t}
-                    </div>
-                    <div className="text-[12px] font-medium mt-1">{n.d}</div>
-                    <div className="mt-2 h-1 rounded-full bg-white/5 overflow-hidden">
-                      <div className="h-full w-2/3 bg-gradient-to-r from-brand to-teal" />
-                    </div>
-                  </div>
-                ))}
+    <section id="builder" className="relative py-24 border-t border-hairline">
+      <div className="container-page">
+        <SectionHeader
+          eyebrow="Builder"
+          title={<>Adapte a plataforma <span className="gradient-text">sem escrever código</span>.</>}
+          description="A sua operação muda a cada lançamento. Aqui você acompanha — sem depender de squad de tecnologia."
+        />
+        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {builders.map((b, i) => (
+            <Reveal key={b.name} delay={i * 60}>
+              <div className="h-full rounded-2xl hairline bg-surface/40 p-6 hover:bg-surface/70 transition">
+                <b.icon className="h-5 w-5 text-teal" />
+                <h3 className="font-display mt-4 text-lg font-semibold">{b.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
               </div>
-              <div className="mt-4 flex items-center justify-between text-[11px] text-muted-foreground px-2">
-                <span>Publicado · v3.2</span>
-                <span className="text-teal">Ativo</span>
-              </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-/* ---------------- SEGMENTS ---------------- */
-function Segments() {
+/* ---------------- SEGMENTOS ---------------- */
+function Segmentos() {
   const segs = [
-    { t: "Incorporadoras", i: Building2 },
-    { t: "Construtoras", i: HomeIcon },
-    { t: "Imobiliárias", i: Landmark },
-    { t: "Indústrias", i: Factory },
-    { t: "Comércio", i: Store },
-    { t: "Serviços", i: Boxes },
-    { t: "Saúde", i: HeartPulse },
-    { t: "Educação", i: GraduationCap },
-    { t: "Jurídico", i: Scale },
-    { t: "Franquias", i: Rocket },
-    { t: "Distribuidoras", i: Truck },
-    { t: "Agronegócio", i: Wheat },
-    { t: "Tecnologia", i: Cpu },
+    {
+      icon: Building2,
+      title: "Incorporadoras",
+      bullets: [
+        "Gestão completa de lançamento e pré-lançamento",
+        "VGV e velocidade de vendas em tempo real",
+        "Relacionamento com múltiplas imobiliárias parceiras",
+        "Espelho de vendas único, sem risco de dupla reserva",
+        "Comissionamento automático por regra comercial",
+      ],
+    },
+    {
+      icon: HardHat,
+      title: "Construtoras",
+      bullets: [
+        "Integração entre obra e vendas em um único painel",
+        "Cronograma físico-financeiro conectado ao caixa",
+        "Repasse de unidades entregues sem retrabalho",
+        "Dashboards de obra para gestor e diretoria",
+        "Documentação e memoriais acessíveis à IA e ao time",
+      ],
+    },
   ];
   return (
-    <section id="segmentos" className="py-28">
+    <section id="segmentos" className="relative py-24 border-t border-hairline">
       <div className="container-page">
-        <Reveal>
-          <SectionTitle
-            kicker="Segmentos"
-            title={<>Uma plataforma. <span className="gradient-text">Cada mercado com sua identidade</span>.</>}
-            sub="A IPAXIS adapta módulos, fluxos, indicadores e vocabulário ao segmento da sua empresa — sem projetos intermináveis de implantação."
-          />
-        </Reveal>
-
-        <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        <SectionHeader
+          eyebrow="Segmentos"
+          title={<>Feita para <span className="gradient-text">quem vive incorporação e construção</span>.</>}
+          description="Não somos uma ferramenta genérica adaptada. A IPAXIS foi desenhada, do primeiro dia, para este setor."
+        />
+        <div className="mt-14 grid lg:grid-cols-2 gap-6">
           {segs.map((s, i) => (
-            <Reveal key={s.t} delay={i * 30}>
-              <div className="group rounded-2xl hairline bg-white/[0.02] p-5 text-center hover:bg-white/[0.05] transition h-full">
-                <div className="mx-auto h-11 w-11 rounded-xl bg-gradient-to-br from-brand/20 to-sky/10 flex items-center justify-center">
-                  <s.i className="h-5 w-5 text-sky" />
+            <Reveal key={s.title} delay={i * 100}>
+              <div className="h-full rounded-2xl hairline bg-surface/40 p-8 hover:bg-surface/70 transition">
+                <div className="flex items-center gap-3">
+                  <div className="rounded-xl gradient-brand p-2.5"><s.icon className="h-5 w-5 text-white" /></div>
+                  <h3 className="font-display text-2xl font-semibold">{s.title}</h3>
                 </div>
-                <div className="mt-4 text-[13px] font-medium">{s.t}</div>
+                <ul className="mt-6 space-y-2.5">
+                  {s.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-teal mt-0.5 shrink-0" /><span>{b}</span></li>
+                  ))}
+                </ul>
               </div>
             </Reveal>
           ))}
@@ -865,97 +747,87 @@ function Segments() {
   );
 }
 
-/* ---------------- COMPARE ---------------- */
-function Compare() {
+/* ---------------- COMPARATIVO ---------------- */
+function Comparativo() {
   const rows = [
-    ["CRM completo", true, true, false, true],
-    ["IA Corporativa treinada", false, false, false, true],
-    ["Automação nativa", false, false, false, true],
-    ["Financeiro integrado", false, false, true, true],
-    ["Dashboards em tempo real", false, false, true, true],
-    ["Workflow visual", false, false, false, true],
-    ["Construtores no-code", false, false, false, true],
-    ["API-first", false, true, true, true],
-    ["WhatsApp nativo", false, false, false, true],
-    ["Multiempresa & LGPD", false, false, true, true],
-  ] as const;
-  const heads = ["Planilhas", "CRM tradicional", "ERP", "IPAXIS"];
+    "Espelho de vendas em tempo real",
+    "IA treinada no empreendimento",
+    "Comissionamento automático",
+    "Dashboard de VGV ao vivo",
+    "Workflow sem código",
+    "API para portais imobiliários",
+    "LGPD e auditoria por usuário",
+  ];
+  const cols = [
+    { name: "Planilhas", values: [false, false, false, false, false, false, false] },
+    { name: "CRM genérico", values: [false, false, false, false, false, false, false] },
+    { name: "ERP de construção", values: [false, false, "parcial", false, false, false, true] },
+    { name: "IPAXIS", values: [true, true, true, true, true, true, true], highlight: true },
+  ];
   return (
-    <section id="comparar" className="py-28">
+    <section id="comparar" className="relative py-24 border-t border-hairline">
       <div className="container-page">
-        <Reveal>
-          <SectionTitle
-            kicker="Comparativo"
-            title={<>Por que a IPAXIS <span className="gradient-text">não é comparável</span>?</>}
-          />
-        </Reveal>
-        <Reveal delay={80}>
-          <div className="mt-12 overflow-hidden rounded-2xl hairline bg-white/[0.02]">
-            <div className="grid grid-cols-5 text-[12px] uppercase tracking-wider text-muted-foreground border-b border-hairline">
-              <div className="px-5 py-4">Capacidade</div>
-              {heads.map((h, i) => (
-                <div
-                  key={h}
-                  className={`px-5 py-4 text-center ${i === heads.length - 1 ? "text-foreground font-semibold" : ""}`}
-                >
-                  {h}
-                </div>
-              ))}
-            </div>
-            {rows.map(([label, ...cells], r) => (
-              <div key={r} className={`grid grid-cols-5 text-[13px] ${r % 2 ? "bg-white/[0.015]" : ""}`}>
-                <div className="px-5 py-3.5">{label as string}</div>
-                {(cells as boolean[]).map((v, i) => (
-                  <div key={i} className="px-5 py-3.5 flex justify-center">
-                    {v ? (
-                      <div className={`h-6 w-6 rounded-md flex items-center justify-center ${i === 3 ? "bg-teal/20" : "bg-white/5"}`}>
-                        <Check className={`h-3.5 w-3.5 ${i === 3 ? "text-teal" : "text-muted-foreground"}`} />
-                      </div>
-                    ) : (
-                      <div className="h-6 w-6 rounded-md flex items-center justify-center bg-white/[0.02]">
-                        <Minus className="h-3.5 w-3.5 text-muted-foreground/50" />
-                      </div>
-                    )}
-                  </div>
+        <SectionHeader
+          eyebrow="Comparativo"
+          title={<>Por que <span className="gradient-text">IPAXIS</span> e não o que você já tem hoje?</>}
+        />
+        <div className="mt-14 overflow-x-auto">
+          <table className="w-full min-w-[720px] border-separate border-spacing-0 text-sm">
+            <thead>
+              <tr>
+                <th className="text-left p-4 text-[11px] uppercase tracking-[0.14em] text-muted-foreground font-normal">Recurso</th>
+                {cols.map((c) => (
+                  <th key={c.name} className={`p-4 text-center text-[13px] font-medium ${c.highlight ? "gradient-text font-display font-semibold" : "text-muted-foreground"}`}>{c.name}</th>
                 ))}
-              </div>
-            ))}
-          </div>
-        </Reveal>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r, i) => (
+                <tr key={r}>
+                  <td className="p-4 border-t border-hairline font-medium">{r}</td>
+                  {cols.map((c) => {
+                    const v = c.values[i];
+                    return (
+                      <td key={c.name} className={`p-4 border-t border-hairline text-center ${c.highlight ? "bg-brand/5" : ""}`}>
+                        {v === true ? <Check className="inline h-4 w-4 text-teal" /> : v === false ? <X className="inline h-4 w-4 text-muted-foreground/40" /> : <span className="text-xs text-muted-foreground">parcial</span>}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ---------------- SECURITY ---------------- */
-function Security() {
+/* ---------------- SEGURANÇA ---------------- */
+function Seguranca() {
   const items = [
-    { i: ShieldCheck, t: "LGPD por design", d: "Consentimento, minimização e trilha de dados." },
-    { i: Database, t: "Backups & DR", d: "Redundância multi-região, RPO baixo." },
-    { i: Activity, t: "Logs & auditoria", d: "Rastreabilidade completa por usuário e ação." },
-    { i: Lock, t: "Criptografia", d: "Dados em trânsito e em repouso." },
-    { i: KeyRound, t: "Permissões granulares", d: "Perfis, escopos e SSO." },
-    { i: Globe, t: "Alta disponibilidade", d: "99,99% de uptime, escalabilidade horizontal." },
+    { icon: ShieldCheck, title: "LGPD por design", desc: "Consentimento, base legal, retenção e direitos do titular integrados à plataforma." },
+    { icon: Lock, title: "Criptografia em trânsito e em repouso", desc: "Dados sensíveis protegidos no tráfego e no armazenamento." },
+    { icon: Activity, title: "Logs e auditoria", desc: "Rastreabilidade por usuário e por ação — quem fez, o quê e quando." },
+    { icon: Database, title: "Backups", desc: "Rotinas de backup gerenciadas para continuidade da operação." },
+    { icon: KeyRound, title: "Permissões granulares", desc: "Controle por imobiliária, corretor, empreendimento e função." },
+    { icon: Users, title: "SSO e multiusuário", desc: "Login corporativo e múltiplos empreendimentos em uma única conta." },
   ];
   return (
-    <section id="seguranca" className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 radial-brand opacity-30 pointer-events-none" />
-      <div className="container-page relative">
-        <Reveal>
-          <SectionTitle
-            kicker="Segurança & governança"
-            title={<>Infraestrutura pensada para <span className="gradient-text">operações críticas</span>.</>}
-          />
-        </Reveal>
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <section id="seguranca" className="relative py-24 border-t border-hairline">
+      <div className="container-page">
+        <SectionHeader
+          eyebrow="Segurança"
+          title={<>Segurança e conformidade <span className="gradient-text">no núcleo da plataforma</span>.</>}
+          description="Sua base de leads, contratos e financeiro exige cuidado além do padrão. A IPAXIS foi construída com esse rigor desde o começo."
+        />
+        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {items.map((it, i) => (
-            <Reveal key={it.t} delay={i * 60}>
-              <div className="rounded-2xl hairline bg-white/[0.02] p-6 h-full">
-                <div className="h-10 w-10 rounded-xl bg-white/[0.03] hairline flex items-center justify-center">
-                  <it.i className="h-4.5 w-4.5 text-teal" />
-                </div>
-                <div className="mt-5 text-[15px] font-semibold">{it.t}</div>
-                <div className="mt-2 text-sm text-muted-foreground">{it.d}</div>
+            <Reveal key={it.title} delay={i * 50}>
+              <div className="h-full rounded-2xl hairline bg-surface/40 p-6">
+                <it.icon className="h-5 w-5 text-teal" />
+                <h3 className="font-display mt-4 text-base font-semibold">{it.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{it.desc}</p>
               </div>
             </Reveal>
           ))}
@@ -965,54 +837,37 @@ function Security() {
   );
 }
 
-/* ---------------- TESTIMONIALS ---------------- */
-function Testimonials() {
-  const items = [
-    {
-      n: "Marina Duarte", r: "COO, Aurora Incorporadora",
-      q: "Substituímos cinco sistemas e triplicamos a velocidade do funil comercial em três meses.",
-      m: "+312% conversão de reservas",
-    },
-    {
-      n: "Rafael Menezes", r: "Diretor Comercial, Vetorial Indústria",
-      q: "A IA da IPAXIS conhece nosso catálogo melhor que a maioria dos vendedores. E nunca dorme.",
-      m: "24/7 atendimento automatizado",
-    },
-    {
-      n: "Camila Prado", r: "CEO, Grupo Solaris",
-      q: "Finalmente temos uma visão executiva em tempo real. Deixamos de decidir no achismo.",
-      m: "-68% tempo de fechamento de mês",
-    },
+/* ---------------- EARLY ADOPTERS ---------------- */
+function EarlyAdopters() {
+  const cards = [
+    { icon: Rocket, title: "Programa de early adopters", desc: "Estamos selecionando incorporadoras e construtoras para o lançamento — com estrutura de parceria e condições especiais." },
+    { icon: Users, title: "Cocriação com o setor", desc: "Sua operação influencia diretamente o roadmap. Você não é mais um cliente na fila — é parceiro fundador." },
+    { icon: ShieldCheck, title: "Sem promessas fabricadas", desc: "Ainda não temos cases publicáveis, e por isso não inventamos números. Quando houver, os depoimentos aqui serão reais e atribuídos." },
   ];
   return (
-    <section id="clientes" className="py-28">
+    <section id="clientes" className="relative py-24 border-t border-hairline">
       <div className="container-page">
-        <Reveal>
-          <SectionTitle
-            kicker="Clientes"
-            title={<>Empresas que operam com <span className="gradient-text">inteligência de dados</span>.</>}
-          />
-        </Reveal>
-        <div className="mt-12 grid md:grid-cols-3 gap-4">
-          {items.map((t, i) => (
-            <Reveal key={t.n} delay={i * 80}>
-              <figure className="rounded-2xl hairline bg-white/[0.02] p-6 h-full flex flex-col">
-                <blockquote className="text-[15px] leading-relaxed text-foreground/90">
-                  “{t.q}”
-                </blockquote>
-                <div className="mt-6 pt-6 border-t border-hairline flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-brand via-sky to-teal" />
-                  <div>
-                    <div className="text-[13px] font-medium">{t.n}</div>
-                    <div className="text-[11px] text-muted-foreground">{t.r}</div>
-                  </div>
-                </div>
-                <div className="mt-4 rounded-lg bg-teal/10 border border-teal/20 px-3 py-2 text-[11px] text-teal">
-                  {t.m}
-                </div>
-              </figure>
+        <SectionHeader
+          eyebrow="Em construção com os primeiros parceiros"
+          title={<>Estamos escolhendo <span className="gradient-text">as primeiras incorporadoras</span> a operar na IPAXIS.</>}
+          description="Se sua empresa quer entrar na primeira leva, este é o momento."
+        />
+        <div className="mt-14 grid md:grid-cols-3 gap-4">
+          {cards.map((c, i) => (
+            <Reveal key={c.title} delay={i * 80}>
+              <div className="h-full rounded-2xl hairline bg-surface/40 p-6">
+                <c.icon className="h-5 w-5 text-teal" />
+                <h3 className="font-display mt-4 text-lg font-semibold">{c.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
+              </div>
             </Reveal>
           ))}
+        </div>
+        <div className="mt-10">
+          <a href="#contato" className="group inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-medium text-brand-foreground shadow-[0_16px_40px_-16px_rgba(36,123,255,0.8)] hover:brightness-110 transition">
+            Quero conversar sobre o programa
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </a>
         </div>
       </div>
     </section>
@@ -1021,105 +876,95 @@ function Testimonials() {
 
 /* ---------------- FAQ ---------------- */
 function FAQ() {
-  const qs = [
-    ["O que a IPAXIS entrega, na prática?", "Um sistema operacional empresarial que unifica CRM, IA, Automação, Financeiro, Dashboards e Workflows em uma única plataforma."],
-    ["A IPAXIS substitui meu CRM atual?", "Sim. E também seu WhatsApp, seu BI, sua automação e boa parte do seu ERP operacional. Tudo em um único ecossistema."],
-    ["Preciso de equipe técnica para implantar?", "Não. Nossos construtores visuais permitem que sua equipe modele fluxos, formulários e dashboards sem código."],
-    ["Como funciona a Inteligência Artificial da IPAXIS?", "Treinamos a IA com seus documentos, políticas, produtos, contratos e regras. Ela responde exatamente conforme sua empresa determina."],
-    ["A IA conversa com meus clientes no WhatsApp?", "Sim. Atende, qualifica, agenda, envia propostas, transfere para humano quando necessário e atualiza o CRM automaticamente."],
-    ["A plataforma se adapta ao meu segmento?", "Sim. Ativamos módulos, vocabulário e indicadores específicos para incorporadoras, indústrias, serviços, saúde, jurídico e mais."],
-    ["Consigo criar meus próprios dashboards?", "Sim. O Dashboard Builder permite montar visões executivas, operacionais e por área com poucos cliques."],
-    ["A IPAXIS tem API?", "Sim. Somos API-first, com webhooks e integrações prontas para os principais ERPs, gateways e canais."],
-    ["Como funciona a segurança dos dados?", "Criptografia em trânsito e em repouso, backups multi-região, logs de auditoria e conformidade com a LGPD."],
-    ["Vocês suportam multiempresa?", "Sim. Você opera múltiplas empresas, filiais, marcas ou unidades de negócio na mesma instância."],
-    ["Quanto tempo leva a implantação?", "Projetos típicos entram em produção entre 2 e 6 semanas, dependendo da complexidade dos fluxos."],
-    ["Vocês migram meus dados atuais?", "Sim. Temos processo estruturado de migração assistida a partir de planilhas, CRMs, ERPs e bases legadas."],
-    ["Como é o modelo de cobrança?", "Cobrança por empresa e por usuário ativo, com pacotes de IA e automação sob medida para o volume da operação."],
-    ["A plataforma funciona offline?", "Funciona em PWA com resiliência a quedas de conexão nas telas críticas de campo."],
-    ["Vocês oferecem SLA?", "Sim, com SLA contratual de disponibilidade, suporte e tempo de resposta."],
-    ["Consigo controlar permissões por usuário?", "Sim, com granularidade por módulo, campo, ação e escopo (empresa, filial, equipe, cliente)."],
-    ["A IPAXIS emite documentos e contratos?", "Sim, com geração, assinatura eletrônica, versionamento e trilha de auditoria."],
-    ["Vocês possuem aplicativo?", "Sim, iOS e Android, com paridade das telas essenciais e notificações em tempo real."],
-    ["Como é o suporte?", "Suporte humano por chat, e-mail e reuniões, além de assistente IA interno para dúvidas operacionais."],
-    ["Como iniciar?", "Solicite uma demonstração. Em uma sessão de 30 minutos mostramos a plataforma aplicada ao seu segmento."],
+  const items = [
+    { q: "O que a IPAXIS entrega, na prática?", a: "Uma única plataforma operacional para incorporadoras e construtoras: CRM de reservas, IA comercial e corporativa, automação, financeiro de comissões e recebíveis, dashboards de VGV e obra, e workflows sem código." },
+    { q: "A IPAXIS substitui meu CRM imobiliário atual?", a: "Sim. Substitui o CRM genérico e ainda incorpora o espelho de vendas, a IA no WhatsApp, o comissionamento e o financeiro — sem depender de integrações improvisadas." },
+    { q: "Como funciona o espelho de vendas em tempo real?", a: "Cada unidade tem estado único (disponível, reservada, em proposta, vendida) sincronizado entre CRM, financeiro e portais. Sem risco de dupla reserva entre imobiliárias parceiras." },
+    { q: "A IA conhece a tabela de vendas do meu empreendimento?", a: "Sim. Treinamos a IA com a tabela vigente, memorial descritivo, política comercial e minutas — ela responde ao lead usando os dados reais do seu lançamento." },
+    { q: "Dá para gerenciar várias imobiliárias parceiras?", a: "Sim. Multiempresa, multiimobiliária e permissões granulares. Cada parceiro vê apenas o que deve ver, com regras de distribuição e comissão específicas." },
+    { q: "Como funciona o comissionamento automático?", a: "Você parametriza regras por corretor, imobiliária, tipologia e etapa do funil. A IPAXIS calcula, provisiona no financeiro e libera conforme os gatilhos do contrato." },
+    { q: "Preciso de equipe técnica para implantar?", a: "Não. A implantação é conduzida pela equipe IPAXIS. Seus usuários operam via interface visual — inclusive o Builder é sem código." },
+    { q: "Quanto tempo leva a implantação?", a: "Varia conforme o porte e a quantidade de empreendimentos ativos. Definimos o cronograma no diagnóstico, sempre com foco em go live rápido e evolução contínua." },
+    { q: "Vocês migram minha base atual de leads e unidades?", a: "Sim. Migração de leads, unidades, contratos, tabelas e histórico faz parte do processo padrão de implantação." },
+    { q: "A plataforma se integra a portais imobiliários (Viva Real, Zap etc.)?", a: "Sim. Integrações nativas com os principais portais, além de API e webhooks para casos específicos." },
+    { q: "Como funciona a segurança dos dados?", a: "LGPD por design, criptografia em trânsito e em repouso, logs e auditoria por usuário e ação, backups, permissões granulares e SSO." },
+    { q: "Como é o modelo de cobrança?", a: "Definido em conversa, considerando porte da operação, número de empreendimentos, usuários e módulos utilizados. Sem letra miúda." },
+    { q: "Como iniciar?", a: "Solicitando uma demonstração. Em seguida fazemos o diagnóstico e desenhamos a proposta de implantação." },
   ];
-  const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="py-28">
-      <div className="container-page">
-        <Reveal>
-          <SectionTitle
-            kicker="Perguntas frequentes"
-            title={<>Tudo o que você precisa saber para <span className="gradient-text">começar</span>.</>}
-          />
-        </Reveal>
-        <div className="mt-12 grid lg:grid-cols-2 gap-3">
-          {qs.map(([q, a], i) => {
-            const isOpen = open === i;
-            return (
-              <Reveal key={q} delay={(i % 6) * 30}>
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full text-left rounded-2xl hairline bg-white/[0.02] p-5 hover:bg-white/[0.04] transition"
-                >
-                  <div className="flex items-start justify-between gap-6">
-                    <div className="text-[14px] font-medium">{q}</div>
-                    <div className={`h-6 w-6 rounded-md hairline flex items-center justify-center transition ${isOpen ? "bg-brand/20" : ""}`}>
-                      {isOpen ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
-                    </div>
-                  </div>
-                  <div
-                    className={`grid transition-all duration-300 ${isOpen ? "grid-rows-[1fr] opacity-100 mt-3" : "grid-rows-[0fr] opacity-0"}`}
-                  >
-                    <div className="overflow-hidden text-[13px] text-muted-foreground leading-relaxed">
-                      {a}
-                    </div>
-                  </div>
-                </button>
-              </Reveal>
-            );
-          })}
+    <section id="faq" className="relative py-24 border-t border-hairline">
+      <div className="container-page grid lg:grid-cols-12 gap-12">
+        <div className="lg:col-span-4">
+          <SectionHeader eyebrow="FAQ" title={<>Perguntas <span className="gradient-text">frequentes</span>.</>} description="Se ficou alguma dúvida, fale com o time — respondemos em horas úteis." />
+        </div>
+        <div className="lg:col-span-8">
+          <div className="rounded-2xl hairline bg-surface/40 overflow-hidden">
+            {items.map((it, i) => (
+              <FAQItem key={it.q} q={it.q} a={it.a} last={i === items.length - 1} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-/* ---------------- CTA ---------------- */
-function CTA() {
+function FAQItem({ q, a, last }: { q: string; a: string; last: boolean }) {
+  const [open, setOpen] = useState(false);
   return (
-    <section id="contato" className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 radial-brand opacity-70 pointer-events-none" />
+    <div className={`${!last ? "border-b border-hairline" : ""}`}>
+      <button className="w-full flex items-center justify-between gap-4 p-5 text-left" onClick={() => setOpen((v) => !v)}>
+        <span className="font-display text-[15px] font-medium">{q}</span>
+        {open ? <Minus className="h-4 w-4 text-teal shrink-0" /> : <Plus className="h-4 w-4 text-teal shrink-0" />}
+      </button>
+      {open && <div className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">{a}</div>}
+    </div>
+  );
+}
+
+/* ---------------- SOBRE ---------------- */
+function Sobre() {
+  return (
+    <section id="sobre" className="relative py-24 border-t border-hairline">
+      <div className="container-page grid lg:grid-cols-12 gap-12 items-start">
+        <div className="lg:col-span-5">
+          <SectionHeader eyebrow="Sobre a IPAXIS" title={<>Nascida para <span className="gradient-text">incorporação e construção</span> — não para todos os setores.</>} />
+        </div>
+        <div className="lg:col-span-7 space-y-5 text-muted-foreground">
+          <p><strong className="text-foreground font-display">Missão.</strong> Transformar processos em inteligência, dando às incorporadoras e construtoras uma plataforma única para vender e entregar mais rápido.</p>
+          <p><strong className="text-foreground font-display">Visão.</strong> Ser o sistema operacional padrão do setor de incorporação e construção no Brasil.</p>
+          <p><strong className="text-foreground font-display">Por que este foco.</strong> O ciclo de um empreendimento — do lançamento à entrega das chaves — tem particularidades que nenhuma ferramenta genérica endereça. Espelho de vendas, tabela vigente, comissionamento por imobiliária parceira, repasse, cronograma físico-financeiro. A IPAXIS foi desenhada, do primeiro dia, para este vocabulário.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- CTA FINAL ---------------- */
+function CTAFinal() {
+  return (
+    <section id="contato" className="relative py-28 border-t border-hairline overflow-hidden">
+      <div className="absolute inset-0 radial-brand opacity-60 pointer-events-none" />
       <div className="container-page relative">
-        <Reveal>
-          <div className="rounded-3xl glass p-10 md:p-16 text-center relative overflow-hidden">
-            <div className="absolute inset-0 grid-lines opacity-40 pointer-events-none" />
-            <Kicker><Zap className="h-3 w-3" /> Comece agora</Kicker>
-            <h2 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-[1.05]">
-              Transforme sua empresa <br className="hidden sm:block" />
-              através da <span className="gradient-text">inteligência</span>.
-            </h2>
-            <p className="mt-6 text-[16px] text-muted-foreground max-w-2xl mx-auto">
-              Solicite uma demonstração. Em 30 minutos, mostramos como a IPAXIS
-              se aplica à realidade da sua empresa.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a
-                href="mailto:contato@ipaxis.com"
-                className="group inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-medium text-brand-foreground glow-brand hover:brightness-110 transition"
-              >
-                Solicitar demonstração
-                <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
-              <a
-                href="#modulos"
-                className="inline-flex items-center gap-2 rounded-full hairline px-6 py-3.5 text-sm font-medium hover:bg-white/5 transition"
-              >
-                Conhecer plataforma
-              </a>
-            </div>
+        <div className="max-w-3xl">
+          <h2 className="font-display text-4xl md:text-6xl font-semibold tracking-tight leading-[1.02]">
+            Sua incorporadora precisa de mais do que um CRM.<br />
+            <span className="gradient-text">Precisa de uma plataforma inteligente para vender e entregar mais rápido.</span>
+          </h2>
+          <p className="mt-6 text-muted-foreground text-lg">Solicite uma demonstração e veja a IPAXIS operando com dados semelhantes aos do seu empreendimento.</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="mailto:contato@ipaxis.com.br?subject=Solicitação%20de%20demonstração"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-medium text-brand-foreground shadow-[0_16px_40px_-16px_rgba(36,123,255,0.8)] hover:brightness-110 transition"
+            >
+              Solicitar demonstração
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </a>
+            <a href="https://elevatev.lovable.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full hairline px-6 py-3.5 text-sm font-medium hover:bg-white/5 transition">
+              Entrar na plataforma
+            </a>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
@@ -1127,132 +972,70 @@ function CTA() {
 
 /* ---------------- FOOTER ---------------- */
 function Footer() {
-  const cols: { t: string; l: { label: string; href: string }[] }[] = [
-    {
-      t: "Plataforma",
-      l: [
-        { label: "CRM", href: "#modulos" },
-        { label: "IA Corporativa", href: "#ia" },
-        { label: "Automação", href: "#automacao" },
-        { label: "Dashboards", href: "#builder" },
-        { label: "Workflow", href: "#builder" },
-        { label: "Financeiro", href: "#modulos" },
-      ],
-    },
-    {
-      t: "Segmentos",
-      l: [
-        { label: "Incorporadoras", href: "#segmentos" },
-        { label: "Indústrias", href: "#segmentos" },
-        { label: "Serviços", href: "#segmentos" },
-        { label: "Saúde", href: "#segmentos" },
-        { label: "Educação", href: "#segmentos" },
-        { label: "Agronegócio", href: "#segmentos" },
-      ],
-    },
-    {
-      t: "Empresa",
-      l: [
-        { label: "Sobre", href: "#sobre" },
-        { label: "Clientes", href: "#clientes" },
-        { label: "Parceiros", href: "#contato" },
-        { label: "Carreiras", href: "mailto:carreiras@ipaxis.com" },
-        { label: "Imprensa", href: "mailto:imprensa@ipaxis.com" },
-        { label: "Contato", href: "#contato" },
-      ],
-    },
-    {
-      t: "Recursos",
-      l: [
-        { label: "Documentação", href: "#modulos" },
-        { label: "API", href: "#modulos" },
-        { label: "Central de ajuda", href: "#faq" },
-        { label: "Status", href: "#seguranca" },
-        { label: "Comparativo", href: "#comparar" },
-        { label: "Segurança", href: "#seguranca" },
-      ],
-    },
-  ];
-  const socials: { s: string; href: string }[] = [
-    { s: "in", href: "https://www.linkedin.com/" },
-    { s: "ig", href: "https://www.instagram.com/" },
+  const cols = [
+    { title: "Empresa", links: [{ label: "Sobre", href: "#sobre" }, { label: "Contato", href: "#contato" }, { label: "Carreiras", href: "mailto:carreiras@ipaxis.com.br" }] },
+    { title: "Plataforma", links: [{ label: "Módulos", href: "#plataforma" }, { label: "IA", href: "#ia" }, { label: "Automação", href: "#automacao" }, { label: "Builder", href: "#builder" }, { label: "Implantação", href: "#implantacao" }] },
+    { title: "Segmentos", links: [{ label: "Incorporadoras", href: "#segmentos" }, { label: "Construtoras", href: "#segmentos" }] },
+    { title: "Confiança", links: [{ label: "Segurança", href: "#seguranca" }, { label: "LGPD", href: "#seguranca" }, { label: "FAQ", href: "#faq" }] },
   ];
   return (
-    <footer id="sobre" className="pt-20 pb-10 border-t border-hairline">
+    <footer className="relative py-16 border-t border-hairline">
       <div className="container-page">
-        <div className="grid lg:grid-cols-6 gap-10">
-          <div className="lg:col-span-2">
+        <div className="grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-4">
             <a href="#top" className="flex items-center gap-2.5">
               <Logo />
-              <span className="text-[15px] font-semibold tracking-tight">IPAXIS</span>
+              <span className="font-display text-[15px] font-semibold tracking-tight">IPAXIS</span>
             </a>
-            <p className="mt-5 text-sm text-muted-foreground max-w-xs leading-relaxed">
-              Sistema operacional inteligente para empresas. Unindo CRM, IA,
-              Automação e Gestão em um único ecossistema.
-            </p>
-            <div className="mt-6 flex gap-2">
-              {socials.map((s) => (
-                <a
-                  key={s.s}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="h-9 w-9 rounded-lg hairline bg-white/[0.02] flex items-center justify-center text-[10px] uppercase text-muted-foreground hover:text-foreground transition"
-                >
-                  {s.s}
-                </a>
-              ))}
-            </div>
+            <p className="mt-4 text-sm text-muted-foreground max-w-sm">A plataforma operacional para incorporadoras e construtoras — do lead à entrega das chaves.</p>
+            <div className="mt-4 text-xs text-muted-foreground">contato@ipaxis.com.br</div>
           </div>
-          {cols.map((c) => (
-            <div key={c.t}>
-              <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{c.t}</div>
-              <ul className="mt-4 space-y-2.5">
-                {c.l.map((i) => (
-                  <li key={i.label}>
-                    <a href={i.href} className="text-[13px] text-foreground/80 hover:text-foreground transition">
-                      {i.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+            {cols.map((c) => (
+              <div key={c.title}>
+                <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{c.title}</div>
+                <ul className="mt-3 space-y-2">
+                  {c.links.map((l) => (
+                    <li key={l.label}><a href={l.href} className="text-sm text-foreground/80 hover:text-foreground transition">{l.label}</a></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="mt-16 pt-6 border-t border-hairline flex flex-wrap items-center justify-between gap-4 text-[11px] text-muted-foreground">
-          <div>© {new Date().getFullYear()} IPAXIS. Todos os direitos reservados.</div>
-          <div className="flex gap-5">
-            <a href="#seguranca" className="hover:text-foreground">Política de privacidade</a>
-            <a href="#seguranca" className="hover:text-foreground">Termos</a>
-            <a href="#seguranca" className="hover:text-foreground">LGPD</a>
-          </div>
+        <div className="mt-14 pt-6 border-t border-hairline flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
+          <span>© {new Date().getFullYear()} IPAXIS. Todos os direitos reservados.</span>
+          <span>Transformando processos em inteligência.</span>
         </div>
       </div>
     </footer>
   );
 }
 
-
 /* ---------------- PAGE ---------------- */
 function Home() {
   return (
-    <main className="relative overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground">
       <Nav />
-      <Hero />
-      <Marquee />
-      <Problem />
-      <Solution />
-      <Modules />
-      <AISection />
-      <Automation />
-      <Builder />
-      <Segments />
-      <Compare />
-      <Security />
-      <Testimonials />
-      <FAQ />
-      <CTA />
+      <main>
+        <Hero />
+        <Problema />
+        <Ecossistema />
+        <ComoFunciona />
+        <Implantacao />
+        <Plataforma />
+        <IA />
+        <Automacao />
+        <Builder />
+        <Segmentos />
+        <Comparativo />
+        <Seguranca />
+        <EarlyAdopters />
+        <FAQ />
+        <Sobre />
+        <CTAFinal />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
