@@ -160,7 +160,7 @@ function Hero() {
               </div>
             </Reveal>
             <Reveal delay={80}>
-              <h1 className="font-display mt-6 text-5xl md:text-6xl xl:text-7xl font-semibold tracking-tight leading-[0.98]">
+              <h1 className="font-display mt-6 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-semibold tracking-tight leading-[1.02]">
                 Transformando processos em <span className="gradient-text">inteligência</span>.
               </h1>
             </Reveal>
