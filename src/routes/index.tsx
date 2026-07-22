@@ -1114,13 +1114,14 @@ function Sobre() {
 /* ---------------- CTA FINAL ---------------- */
 function CTAFinal() {
   return (
-    <section id="contato" className="relative py-28 border-t border-hairline overflow-hidden">
+    <section id="contato" className="relative py-20 sm:py-28 border-t border-hairline overflow-hidden">
       <div className="absolute inset-0 radial-brand opacity-60 pointer-events-none" />
       <div className="container-page relative">
         <div className="max-w-3xl">
-          <h2 className="font-display text-4xl md:text-6xl font-semibold tracking-tight leading-[1.02]">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
             Sua incorporadora precisa de mais do que um CRM.<br />
             <span className="gradient-text">Precisa de uma plataforma inteligente para vender e entregar mais rápido.</span>
+
           </h2>
           <p className="mt-6 text-muted-foreground text-lg">Solicite uma demonstração e veja a IPAXIS operando com dados semelhantes aos do seu empreendimento.</p>
           <div className="mt-8 flex flex-wrap gap-3">
