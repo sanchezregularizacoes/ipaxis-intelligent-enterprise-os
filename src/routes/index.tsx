@@ -350,15 +350,15 @@ function Ecossistema() {
           <p className="mt-5 text-muted-foreground">Tudo o que sua incorporadora precisa em um único núcleo — conectado por natureza, não por integração improvisada.</p>
         </div>
 
-        <div className="relative mt-16 aspect-square max-w-2xl mx-auto">
-          <div className="absolute inset-1/4 rounded-full border border-hairline" />
-          <div className="absolute inset-8 rounded-full border border-hairline" />
+        <div className="relative mt-16 aspect-square w-full max-w-2xl mx-auto px-8 sm:px-12">
+          <div className="absolute inset-[calc(2rem+15%)] sm:inset-1/4 rounded-full border border-hairline" />
+          <div className="absolute inset-8 sm:inset-8 rounded-full border border-hairline" style={{ inset: undefined }} />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative rounded-2xl glass p-6 glow-brand flex items-center gap-3">
-              <Logo className="h-9 w-9" />
+            <div className="relative rounded-2xl glass p-4 sm:p-6 glow-brand flex items-center gap-2 sm:gap-3">
+              <Logo className="h-7 w-7 sm:h-9 sm:w-9" />
               <div>
-                <div className="font-display text-sm font-semibold">IPAXIS Core</div>
-                <div className="text-[10px] text-muted-foreground">Núcleo operacional</div>
+                <div className="font-display text-xs sm:text-sm font-semibold">IPAXIS Core</div>
+                <div className="text-[9px] sm:text-[10px] text-muted-foreground">Núcleo operacional</div>
               </div>
             </div>
           </div>
@@ -367,15 +367,15 @@ function Ecossistema() {
             return (
               <div
                 key={n.label}
-                className="absolute inset-0 pointer-events-none"
+                className="absolute inset-8 sm:inset-12 pointer-events-none"
                 style={{ transform: `rotate(${angle}deg)` }}
               >
                 <div
-                  className="absolute left-1/2 top-0 -translate-x-1/2 pointer-events-auto"
+                  className="absolute left-1/2 top-0 pointer-events-auto"
                   style={{ transform: `translateX(-50%) rotate(${-angle}deg)` }}
                 >
-                  <div className="glass rounded-xl px-3 py-2 flex items-center gap-2 text-xs shadow-lg">
-                    <n.icon className="h-4 w-4 text-teal" />
+                  <div className="glass rounded-lg sm:rounded-xl px-2 py-1 sm:px-3 sm:py-2 flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs shadow-lg">
+                    <n.icon className="h-3 w-3 sm:h-4 sm:w-4 text-teal shrink-0" />
                     <span className="whitespace-nowrap">{n.label}</span>
                   </div>
                 </div>
@@ -383,6 +383,7 @@ function Ecossistema() {
             );
           })}
         </div>
+
       </div>
     </section>
   );
