@@ -37,7 +37,9 @@ function Logo({ className = "h-8 w-8" }: { className?: string }) {
 const NAV_LINKS = [
   { label: "Plataforma", href: "#plataforma" },
   { label: "IA", href: "#ia" },
+  { label: "Assistentes", href: "#assistentes" },
   { label: "Automação", href: "#automacao" },
+
   { label: "Builder", href: "#builder" },
   { label: "Implantação", href: "#implantacao" },
   { label: "Segurança", href: "#seguranca" },
