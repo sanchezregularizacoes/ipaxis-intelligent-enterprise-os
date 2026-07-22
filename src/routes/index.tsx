@@ -63,11 +63,12 @@ function Nav() {
         scrolled ? "backdrop-blur-xl bg-background/70 border-b border-hairline" : ""
       }`}
     >
-      <div className="container-page flex h-16 items-center gap-6">
-        <a href="#top" className="flex items-center gap-2.5 shrink-0">
-          <Logo />
-          <span className="font-display text-[15px] font-semibold tracking-tight">IPAXIS</span>
+      <div className="container-page flex h-16 items-center gap-3 sm:gap-6">
+        <a href="#top" className="flex items-center gap-2 sm:gap-2.5 shrink-0 min-w-0">
+          <Logo className="h-7 w-7 sm:h-8 sm:w-8" />
+          <span className="font-display text-[14px] sm:text-[15px] font-semibold tracking-tight">IPAXIS</span>
         </a>
+
         <nav className="hidden xl:flex items-center gap-1 flex-1 justify-center min-w-0">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="px-3 py-2 text-[13px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
@@ -146,7 +147,7 @@ function SectionHeader({ eyebrow, title, description }: { eyebrow?: string; titl
 /* ---------------- HERO ---------------- */
 function Hero() {
   return (
-    <section id="top" className="relative pt-32 pb-24 overflow-hidden">
+    <section id="top" className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden">
       <div className="absolute inset-0 radial-brand pointer-events-none" />
       <div className="absolute inset-0 grid-lines pointer-events-none opacity-70" />
       <div className="container-page relative">
@@ -159,7 +160,7 @@ function Hero() {
               </div>
             </Reveal>
             <Reveal delay={80}>
-              <h1 className="font-display mt-6 text-5xl md:text-6xl xl:text-7xl font-semibold tracking-tight leading-[0.98]">
+              <h1 className="font-display mt-6 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-semibold tracking-tight leading-[1.02]">
                 Transformando processos em <span className="gradient-text">inteligência</span>.
               </h1>
             </Reveal>
@@ -207,9 +208,9 @@ function HeroMockup() {
     { icon: Workflow, label: "Automação", angle: 300 },
   ];
   return (
-    <div className="relative aspect-[5/4] w-full">
+    <div className="relative aspect-[5/4] w-full max-w-[560px] mx-auto px-6 sm:px-8">
       {/* Orbit ring */}
-      <div className="absolute inset-6 rounded-full border border-hairline animate-[spin_60s_linear_infinite]" style={{ animationDirection: "reverse" }}>
+      <div className="absolute inset-10 sm:inset-12 rounded-full border border-hairline animate-[spin_60s_linear_infinite]" style={{ animationDirection: "reverse" }}>
         {orbit.map((o, i) => (
           <div
             key={i}
@@ -220,8 +221,8 @@ function HeroMockup() {
               className="absolute left-1/2 top-0"
               style={{ transform: `translateX(-50%) rotate(${-o.angle}deg)` }}
             >
-              <div className="glass rounded-xl px-2.5 py-1.5 flex items-center gap-1.5 text-[11px] text-foreground/90 shadow-lg">
-                <o.icon className="h-3.5 w-3.5 text-teal" />
+              <div className="glass rounded-lg sm:rounded-xl px-2 py-1 sm:px-2.5 sm:py-1.5 flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] text-foreground/90 shadow-lg">
+                <o.icon className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-teal" />
                 {o.label}
               </div>
             </div>
@@ -230,30 +231,30 @@ function HeroMockup() {
       </div>
 
       {/* Central dashboard card */}
-      <div className="absolute inset-16 md:inset-20 rounded-2xl glass p-4 shadow-2xl glow-brand">
-        <div className="flex items-center justify-between text-[11px] text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-teal animate-pulse" /> Empreendimento Aurora</span>
-          <span>Hoje</span>
+      <div className="absolute inset-16 sm:inset-20 md:inset-24 rounded-2xl glass p-3 sm:p-4 shadow-2xl glow-brand">
+        <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5 truncate"><span className="h-1.5 w-1.5 rounded-full bg-teal animate-pulse shrink-0" /> Empreendimento Aurora</span>
+          <span className="shrink-0 ml-2">Hoje</span>
         </div>
-        <div className="mt-3 grid grid-cols-3 gap-2">
+        <div className="mt-2 sm:mt-3 grid grid-cols-3 gap-1.5 sm:gap-2">
           <MiniStat label="VGV mês" value="R$ 42,8M" trend="+12%" />
           <MiniStat label="Reservas" value="38" trend="+7" />
           <MiniStat label="Velocidade" value="1,8 u/dia" trend="+0,3" />
         </div>
-        <div className="mt-3 rounded-lg bg-background/40 p-2.5 border border-hairline">
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5">Funil de vendas</div>
+        <div className="mt-2 sm:mt-3 rounded-lg bg-background/40 p-2 sm:p-2.5 border border-hairline">
+          <div className="text-[9px] sm:text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5">Funil de vendas</div>
           <div className="grid grid-cols-6 gap-1">
             {["Novo","Contato","Qualif.","Proposta","Reserva","Contrato"].map((s, i) => (
-              <div key={s} className="flex flex-col items-center gap-1">
+              <div key={s} className="flex flex-col items-center gap-1 min-w-0">
                 <div className="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
                   <div className="h-full gradient-brand" style={{ width: `${100 - i * 14}%` }} />
                 </div>
-                <span className="text-[9px] text-muted-foreground truncate w-full text-center">{s}</span>
+                <span className="hidden sm:block text-[9px] text-muted-foreground truncate w-full text-center">{s}</span>
               </div>
             ))}
           </div>
         </div>
-        <div className="mt-2 grid grid-cols-2 gap-2">
+        <div className="mt-2 hidden sm:grid grid-cols-2 gap-2">
           <div className="rounded-lg bg-background/40 p-2 border border-hairline">
             <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground"><MessageSquare className="h-3 w-3 text-teal" /> IA no WhatsApp</div>
             <div className="mt-1 text-[11px] text-foreground/90">"Torre B, 3 dorm., R$ 720k. Posso agendar a visita?"</div>
@@ -266,11 +267,13 @@ function HeroMockup() {
       </div>
 
       {/* Floating status pill */}
-      <div className="absolute -top-2 right-4 glass rounded-full px-3 py-1.5 text-[11px] flex items-center gap-2 animate-float">
+      <div className="absolute top-0 right-2 sm:-top-2 sm:right-4 glass rounded-full px-2.5 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-[11px] flex items-center gap-1.5 sm:gap-2 animate-float">
         <Bell className="h-3 w-3 text-teal" />
-        Nova reserva · Unidade 1204
+        <span className="hidden sm:inline">Nova reserva · Unidade 1204</span>
+        <span className="sm:hidden">Nova reserva</span>
       </div>
     </div>
+
   );
 }
 
@@ -295,7 +298,7 @@ function Problema() {
     { icon: Activity, title: "Decisão com dado velho", desc: "VGV do mês fechado só na virada. Diretoria decide olhando o passado." },
   ];
   return (
-    <section className="relative py-24 border-t border-hairline">
+    <section className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="A nova realidade"
@@ -331,7 +334,7 @@ function Ecossistema() {
     { icon: HardHat, label: "Obra & Vendas" },
   ];
   return (
-    <section className="relative py-24 border-t border-hairline overflow-hidden">
+    <section className="relative py-16 sm:py-24 border-t border-hairline overflow-hidden">
       <div className="absolute inset-0 radial-brand opacity-40 pointer-events-none" />
       <div className="container-page relative">
         <div className="text-center max-w-5xl mx-auto">
@@ -347,15 +350,15 @@ function Ecossistema() {
           <p className="mt-5 text-muted-foreground">Tudo o que sua incorporadora precisa em um único núcleo — conectado por natureza, não por integração improvisada.</p>
         </div>
 
-        <div className="relative mt-16 aspect-square max-w-2xl mx-auto">
-          <div className="absolute inset-1/4 rounded-full border border-hairline" />
-          <div className="absolute inset-8 rounded-full border border-hairline" />
+        <div className="relative mt-16 aspect-square w-full max-w-2xl mx-auto px-8 sm:px-12">
+          <div className="absolute inset-[calc(2rem+15%)] sm:inset-1/4 rounded-full border border-hairline" />
+          <div className="absolute inset-8 sm:inset-8 rounded-full border border-hairline" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative rounded-2xl glass p-6 glow-brand flex items-center gap-3">
-              <Logo className="h-9 w-9" />
+            <div className="relative rounded-2xl glass p-4 sm:p-6 glow-brand flex items-center gap-2 sm:gap-3">
+              <Logo className="h-7 w-7 sm:h-9 sm:w-9" />
               <div>
-                <div className="font-display text-sm font-semibold">IPAXIS Core</div>
-                <div className="text-[10px] text-muted-foreground">Núcleo operacional</div>
+                <div className="font-display text-xs sm:text-sm font-semibold">IPAXIS Core</div>
+                <div className="text-[9px] sm:text-[10px] text-muted-foreground">Núcleo operacional</div>
               </div>
             </div>
           </div>
@@ -364,15 +367,15 @@ function Ecossistema() {
             return (
               <div
                 key={n.label}
-                className="absolute inset-0 pointer-events-none"
+                className="absolute inset-8 sm:inset-12 pointer-events-none"
                 style={{ transform: `rotate(${angle}deg)` }}
               >
                 <div
-                  className="absolute left-1/2 top-0 -translate-x-1/2 pointer-events-auto"
+                  className="absolute left-1/2 top-0 pointer-events-auto"
                   style={{ transform: `translateX(-50%) rotate(${-angle}deg)` }}
                 >
-                  <div className="glass rounded-xl px-3 py-2 flex items-center gap-2 text-xs shadow-lg">
-                    <n.icon className="h-4 w-4 text-teal" />
+                  <div className="glass rounded-lg sm:rounded-xl px-2 py-1 sm:px-3 sm:py-2 flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs shadow-lg">
+                    <n.icon className="h-3 w-3 sm:h-4 sm:w-4 text-teal shrink-0" />
                     <span className="whitespace-nowrap">{n.label}</span>
                   </div>
                 </div>
@@ -380,6 +383,7 @@ function Ecossistema() {
             );
           })}
         </div>
+
       </div>
     </section>
   );
@@ -396,7 +400,7 @@ function ComoFunciona() {
     { title: "Acompanhamos a evolução", desc: "Melhoria contínua a cada lançamento.", icon: LineChart },
   ];
   return (
-    <section className="relative py-24 border-t border-hairline">
+    <section className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader eyebrow="Como funciona" title={<>Do diagnóstico à evolução — <span className="gradient-text">sem virar projeto de TI</span>.</>} />
         <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -430,7 +434,7 @@ function Implantacao() {
     "Suporte evolutivo contínuo conforme novos lançamentos",
   ];
   return (
-    <section id="implantacao" className="relative py-24 border-t border-hairline">
+    <section id="implantacao" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page grid lg:grid-cols-12 gap-12 items-start">
         <div className="lg:col-span-5">
           <SectionHeader
@@ -502,7 +506,7 @@ function Plataforma() {
     },
   ];
   return (
-    <section id="plataforma" className="relative py-24 border-t border-hairline">
+    <section id="plataforma" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Plataforma"
@@ -554,7 +558,7 @@ function IA() {
     "Transfere para atendimento humano no momento certo",
   ];
   return (
-    <section id="ia" className="relative py-24 border-t border-hairline overflow-hidden">
+    <section id="ia" className="relative py-16 sm:py-24 border-t border-hairline overflow-hidden">
       <div className="absolute inset-0 radial-brand opacity-30 pointer-events-none" />
       <div className="container-page relative">
         <SectionHeader
@@ -690,7 +694,7 @@ function Assistentes() {
   ];
 
   return (
-    <section id="assistentes" className="relative py-24 border-t border-hairline overflow-hidden">
+    <section id="assistentes" className="relative py-16 sm:py-24 border-t border-hairline overflow-hidden">
       <div className="absolute inset-0 radial-brand opacity-30 pointer-events-none" />
       <div className="container-page relative">
         <SectionHeader
@@ -794,7 +798,7 @@ function Automacao() {
     { icon: Bell, label: "Gestor notificado", sub: "Instantâneo" },
   ];
   return (
-    <section id="automacao" className="relative py-24 border-t border-hairline">
+    <section id="automacao" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Automação"
@@ -835,7 +839,7 @@ function Builder() {
     { icon: Wand2, name: "Automation Builder", desc: "Regras condicionais, gatilhos e ações." },
   ];
   return (
-    <section id="builder" className="relative py-24 border-t border-hairline">
+    <section id="builder" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Builder"
@@ -885,7 +889,7 @@ function Segmentos() {
     },
   ];
   return (
-    <section id="segmentos" className="relative py-24 border-t border-hairline">
+    <section id="segmentos" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Segmentos"
@@ -932,7 +936,7 @@ function Comparativo() {
     { name: "IPAXIS", values: [true, true, true, true, true, true, true], highlight: true },
   ];
   return (
-    <section id="comparar" className="relative py-24 border-t border-hairline">
+    <section id="comparar" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Comparativo"
@@ -981,7 +985,7 @@ function Seguranca() {
     { icon: Users, title: "SSO e multiusuário", desc: "Login corporativo e múltiplos empreendimentos em uma única conta." },
   ];
   return (
-    <section id="seguranca" className="relative py-24 border-t border-hairline">
+    <section id="seguranca" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Segurança"
@@ -1012,7 +1016,7 @@ function EarlyAdopters() {
     { icon: ShieldCheck, title: "Sem promessas fabricadas", desc: "Ainda não temos cases publicáveis, e por isso não inventamos números. Quando houver, os depoimentos aqui serão reais e atribuídos." },
   ];
   return (
-    <section id="clientes" className="relative py-24 border-t border-hairline">
+    <section id="clientes" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page">
         <SectionHeader
           eyebrow="Em construção com os primeiros parceiros"
@@ -1059,7 +1063,7 @@ function FAQ() {
     { q: "Como iniciar?", a: "Solicitando uma demonstração. Em seguida fazemos o diagnóstico e desenhamos a proposta de implantação." },
   ];
   return (
-    <section id="faq" className="relative py-24 border-t border-hairline">
+    <section id="faq" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-4">
           <SectionHeader eyebrow="FAQ" title={<>Perguntas <span className="gradient-text">frequentes</span>.</>} description="Se ficou alguma dúvida, fale com o time — respondemos em horas úteis." />
@@ -1092,7 +1096,7 @@ function FAQItem({ q, a, last }: { q: string; a: string; last: boolean }) {
 /* ---------------- SOBRE ---------------- */
 function Sobre() {
   return (
-    <section id="sobre" className="relative py-24 border-t border-hairline">
+    <section id="sobre" className="relative py-16 sm:py-24 border-t border-hairline">
       <div className="container-page grid lg:grid-cols-12 gap-12 items-start">
         <div className="lg:col-span-5">
           <SectionHeader eyebrow="Sobre a IPAXIS" title={<>Nascida para <span className="gradient-text">incorporação e construção</span> — não para todos os setores.</>} />
@@ -1110,13 +1114,14 @@ function Sobre() {
 /* ---------------- CTA FINAL ---------------- */
 function CTAFinal() {
   return (
-    <section id="contato" className="relative py-28 border-t border-hairline overflow-hidden">
+    <section id="contato" className="relative py-20 sm:py-28 border-t border-hairline overflow-hidden">
       <div className="absolute inset-0 radial-brand opacity-60 pointer-events-none" />
       <div className="container-page relative">
         <div className="max-w-3xl">
-          <h2 className="font-display text-4xl md:text-6xl font-semibold tracking-tight leading-[1.02]">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
             Sua incorporadora precisa de mais do que um CRM.<br />
             <span className="gradient-text">Precisa de uma plataforma inteligente para vender e entregar mais rápido.</span>
+
           </h2>
           <p className="mt-6 text-muted-foreground text-lg">Solicite uma demonstração e veja a IPAXIS operando com dados semelhantes aos do seu empreendimento.</p>
           <div className="mt-8 flex flex-wrap gap-3">
