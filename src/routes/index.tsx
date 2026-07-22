@@ -352,7 +352,7 @@ function Ecossistema() {
 
         <div className="relative mt-16 aspect-square w-full max-w-2xl mx-auto px-8 sm:px-12">
           <div className="absolute inset-[calc(2rem+15%)] sm:inset-1/4 rounded-full border border-hairline" />
-          <div className="absolute inset-8 sm:inset-8 rounded-full border border-hairline" style={{ inset: undefined }} />
+          <div className="absolute inset-8 sm:inset-8 rounded-full border border-hairline" />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="relative rounded-2xl glass p-4 sm:p-6 glow-brand flex items-center gap-2 sm:gap-3">
               <Logo className="h-7 w-7 sm:h-9 sm:w-9" />
