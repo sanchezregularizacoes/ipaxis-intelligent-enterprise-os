@@ -147,7 +147,7 @@ function SectionHeader({ eyebrow, title, description }: { eyebrow?: string; titl
 /* ---------------- HERO ---------------- */
 function Hero() {
   return (
-    <section id="top" className="relative pt-32 pb-24 overflow-hidden">
+    <section id="top" className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden">
       <div className="absolute inset-0 radial-brand pointer-events-none" />
       <div className="absolute inset-0 grid-lines pointer-events-none opacity-70" />
       <div className="container-page relative">
