@@ -211,12 +211,17 @@ function HeroMockup() {
         {orbit.map((o, i) => (
           <div
             key={i}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            style={{ transform: `rotate(${o.angle}deg) translate(0, -46%) rotate(-${o.angle}deg)` }}
+            className="absolute inset-0 pointer-events-none"
+            style={{ transform: `rotate(${o.angle}deg)` }}
           >
-            <div className="glass rounded-xl px-2.5 py-1.5 flex items-center gap-1.5 text-[11px] text-foreground/90 shadow-lg">
-              <o.icon className="h-3.5 w-3.5 text-teal" />
-              {o.label}
+            <div
+              className="absolute left-1/2 top-0"
+              style={{ transform: `translateX(-50%) rotate(${-o.angle}deg)` }}
+            >
+              <div className="glass rounded-xl px-2.5 py-1.5 flex items-center gap-1.5 text-[11px] text-foreground/90 shadow-lg">
+                <o.icon className="h-3.5 w-3.5 text-teal" />
+                {o.label}
+              </div>
             </div>
           </div>
         ))}
@@ -357,12 +362,17 @@ function Ecossistema() {
             return (
               <div
                 key={n.label}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                style={{ transform: `rotate(${angle}deg) translate(0, -44%) rotate(-${angle}deg)` }}
+                className="absolute inset-0 pointer-events-none"
+                style={{ transform: `rotate(${angle}deg)` }}
               >
-                <div className="glass rounded-xl px-3 py-2 flex items-center gap-2 text-xs shadow-lg">
-                  <n.icon className="h-4 w-4 text-teal" />
-                  <span className="whitespace-nowrap">{n.label}</span>
+                <div
+                  className="absolute left-1/2 top-0 -translate-x-1/2 pointer-events-auto"
+                  style={{ transform: `translateX(-50%) rotate(${-angle}deg)` }}
+                >
+                  <div className="glass rounded-xl px-3 py-2 flex items-center gap-2 text-xs shadow-lg">
+                    <n.icon className="h-4 w-4 text-teal" />
+                    <span className="whitespace-nowrap">{n.label}</span>
+                  </div>
                 </div>
               </div>
             );
