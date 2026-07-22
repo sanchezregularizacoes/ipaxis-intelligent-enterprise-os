@@ -37,7 +37,9 @@ function Logo({ className = "h-8 w-8" }: { className?: string }) {
 const NAV_LINKS = [
   { label: "Plataforma", href: "#plataforma" },
   { label: "IA", href: "#ia" },
+  { label: "Assistentes", href: "#assistentes" },
   { label: "Automação", href: "#automacao" },
+
   { label: "Builder", href: "#builder" },
   { label: "Implantação", href: "#implantacao" },
   { label: "Segurança", href: "#seguranca" },
@@ -627,6 +629,159 @@ function ChatBubble({ side, children }: { side: "in" | "out"; children: ReactNod
   );
 }
 
+/* ---------------- ASSISTENTES POR CARGO ---------------- */
+function Assistentes() {
+  const roles = [
+    {
+      icon: Users,
+      title: "Assistente do Corretor",
+      tag: "Operação de campo",
+      bullets: [
+        "Recebe áudio ou texto no WhatsApp e move o lead na esteira, cria tarefa, adiciona nota e agenda visita",
+        "Envia a agenda do dia assim que o corretor inicia o expediente",
+        "Alerta pró-ativamente sobre leads parados há 24h, 48h e 72h",
+        "Tira dúvidas sobre unidades, tabela, condições comerciais e status de reserva",
+      ],
+    },
+    {
+      icon: HardHat,
+      title: "Assistente do Gerente",
+      tag: "Time comercial",
+      bullets: [
+        "Mostra performance individual dos corretores em tempo real",
+        "Aponta gargalos do funil e etapas com maior queda de conversão",
+        "Sugere redistribuição de leads e cobra follow-ups pendentes",
+        "Prepara o briefing da reunião semanal de vendas",
+      ],
+    },
+    {
+      icon: Activity,
+      title: "Assistente do Gestor",
+      tag: "Operação e obra",
+      bullets: [
+        "Consolida status de obra, financeiro e comercial em um único brief",
+        "Avisa quando um KPI sai da meta antes do fechamento do mês",
+        "Cruza cronograma físico-financeiro com previsão de recebíveis",
+        "Responde perguntas em linguagem natural sobre qualquer indicador",
+      ],
+    },
+    {
+      icon: LineChart,
+      title: "Assistente do Diretor",
+      tag: "Visão estratégica",
+      bullets: [
+        "Entrega leitura diária de VGV, velocidade de vendas e distratos",
+        "Compara empreendimentos e safras de lançamento",
+        "Simula cenários de preço, desconto e absorção",
+        "Antecipa riscos comerciais e de fluxo de caixa",
+      ],
+    },
+    {
+      icon: Sparkles,
+      title: "Assistente do CEO",
+      tag: "Board & C-level",
+      bullets: [
+        "Briefing executivo por WhatsApp todas as manhãs",
+        "Panorama consolidado de todas as unidades de negócio",
+        "Insights estratégicos com base em dados históricos e de mercado",
+        "Responde perguntas de board em segundos, sem depender do time",
+      ],
+    },
+  ];
+
+  return (
+    <section id="assistentes" className="relative py-24 border-t border-hairline overflow-hidden">
+      <div className="absolute inset-0 radial-brand opacity-30 pointer-events-none" />
+      <div className="container-page relative">
+        <SectionHeader
+          eyebrow="Assistentes por cargo · exclusivo IPAXIS"
+          title={<>Uma IA dedicada para <span className="gradient-text">cada função da sua operação</span>.</>}
+          description="Cada pessoa da incorporadora — do corretor ao CEO — tem sua própria assistente no WhatsApp. Pró-ativa, contextual e treinada nos dados da operação. Nenhuma outra plataforma do setor entrega isso."
+        />
+
+        {/* Destaque do corretor — mockup WhatsApp */}
+        <Reveal>
+          <div className="mt-14 grid lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full hairline bg-surface/60 px-3 py-1 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+                <MessageSquare className="h-3.5 w-3.5 text-teal" /> Direto pelo WhatsApp
+              </div>
+              <h3 className="mt-4 font-display text-2xl md:text-3xl font-semibold leading-tight">
+                O corretor manda um áudio. <span className="gradient-text">A assistente executa no CRM.</span>
+              </h3>
+              <p className="mt-4 text-muted-foreground">
+                Sem abrir sistema, sem preencher formulário. Mover lead, adicionar nota, criar tarefa, agendar visita, consultar status — tudo por conversa. E a assistente ainda avisa proativamente quando algo precisa de atenção.
+              </p>
+              <ul className="mt-6 space-y-2.5 text-sm">
+                {[
+                  "Áudio ou texto — a IA transcreve, entende contexto e age",
+                  "Agenda do dia entregue automaticamente ao iniciar o expediente",
+                  "Alertas de leads parados há 24h / 48h / 72h",
+                  "Lembretes de reunião, visita e retorno prometido ao cliente",
+                  "Consulta de tabela, disponibilidade e comissão em segundos",
+                ].map((b) => (
+                  <li key={b} className="flex items-start gap-2"><Check className="h-4 w-4 text-teal mt-0.5 shrink-0" /><span>{b}</span></li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-2xl glass p-5">
+              <div className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground flex items-center gap-2">
+                <MessageSquare className="h-3.5 w-3.5 text-teal" /> WhatsApp · Assistente do Corretor
+              </div>
+              <div className="mt-3 space-y-2 text-sm">
+                <ChatBubble side="out">Bom dia, Rafael 👋 Hoje você tem 3 compromissos: visita Aurora 10h (Marina), call Horizonte 14h (João) e retorno prometido ao lead Camila até 17h.</ChatBubble>
+                <ChatBubble side="out">⚠️ 4 leads seus estão parados há mais de 48h. O mais crítico é o Bruno Silva (proposta pendente há 3 dias).</ChatBubble>
+                <ChatBubble side="in">🎙️ áudio · 0:12 — "manda uma nota no lead da Marina dizendo que ela confirmou a visita e move ela pra etapa de visita agendada"</ChatBubble>
+                <ChatBubble side="out">Feito ✅ Nota adicionada e Marina movida para "Visita agendada". Também criei tarefa de confirmar visita amanhã 18h.</ChatBubble>
+                <ChatBubble side="in">como tá minha conversão esse mês?</ChatBubble>
+                <ChatBubble side="out">Você está em 18,4% (média do time: 14,2%). Fechou 3 reservas, 2 aguardam análise de crédito. Quer o detalhe por empreendimento?</ChatBubble>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Grid de assistentes por cargo */}
+        <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {roles.map((r, i) => (
+            <Reveal key={r.title} delay={i * 60}>
+              <div className="rounded-2xl hairline bg-surface/40 p-6 h-full hover:bg-surface/60 transition-colors">
+                <div className="flex items-center gap-3">
+                  <div className="rounded-lg gradient-brand p-2"><r.icon className="h-4 w-4 text-white" /></div>
+                  <div>
+                    <div className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">{r.tag}</div>
+                    <h4 className="font-display text-lg font-semibold">{r.title}</h4>
+                  </div>
+                </div>
+                <ul className="mt-4 space-y-2">
+                  {r.bullets.map((b) => (
+                    <li key={b} className="text-sm flex items-start gap-2"><Check className="h-3.5 w-3.5 text-teal mt-1 shrink-0" /><span className="text-muted-foreground">{b}</span></li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
+          <Reveal delay={roles.length * 60}>
+            <div className="rounded-2xl p-6 h-full gradient-brand text-white flex flex-col justify-between">
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.14em] opacity-80">Pró-ativas por natureza</div>
+                <h4 className="font-display text-lg font-semibold mt-1">Não esperam ser chamadas</h4>
+                <p className="text-sm opacity-90 mt-3">
+                  As assistentes monitoram a operação 24/7 e avisam antes do problema acontecer: lead esfriando, meta em risco, tarefa esquecida, cliente sem retorno.
+                </p>
+              </div>
+              <div className="mt-6 flex items-center gap-2 text-sm font-medium">
+                <Bell className="h-4 w-4" /> Alertas contextuais no WhatsApp
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 /* ---------------- AUTOMAÇÃO ---------------- */
 function Automacao() {
   const steps = [
@@ -1037,7 +1192,9 @@ function Home() {
         <Implantacao />
         <Plataforma />
         <IA />
+        <Assistentes />
         <Automacao />
+
         <Builder />
         <Segmentos />
         <Comparativo />
