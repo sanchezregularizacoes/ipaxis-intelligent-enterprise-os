@@ -327,13 +327,15 @@ function Ecossistema() {
     <section className="relative py-24 border-t border-hairline overflow-hidden">
       <div className="absolute inset-0 radial-brand opacity-40 pointer-events-none" />
       <div className="container-page relative">
-        <div className="text-center max-w-3xl mx-auto">
+        <div className="text-center max-w-5xl mx-auto">
           <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full gradient-brand" />
             Ecossistema IPAXIS
           </div>
-          <h2 className="font-display mt-5 text-4xl md:text-5xl font-semibold tracking-tight leading-[1.05]">
-            Uma base de dados. Uma inteligência.<br /><span className="gradient-text">Uma plataforma.</span>
+          <h2 className="font-display mt-5 text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight leading-[1.1] whitespace-normal">
+            <span className="block">Uma base de dados.</span>
+            <span className="block">Uma inteligência.</span>
+            <span className="block gradient-text">Uma plataforma.</span>
           </h2>
           <p className="mt-5 text-muted-foreground">Tudo o que sua incorporadora precisa em um único núcleo — conectado por natureza, não por integração improvisada.</p>
         </div>
