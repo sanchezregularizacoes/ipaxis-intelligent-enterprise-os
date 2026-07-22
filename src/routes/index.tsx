@@ -208,9 +208,9 @@ function HeroMockup() {
     { icon: Workflow, label: "Automação", angle: 300 },
   ];
   return (
-    <div className="relative aspect-[5/4] w-full">
+    <div className="relative aspect-[5/4] w-full max-w-[560px] mx-auto px-6 sm:px-8">
       {/* Orbit ring */}
-      <div className="absolute inset-6 rounded-full border border-hairline animate-[spin_60s_linear_infinite]" style={{ animationDirection: "reverse" }}>
+      <div className="absolute inset-10 sm:inset-12 rounded-full border border-hairline animate-[spin_60s_linear_infinite]" style={{ animationDirection: "reverse" }}>
         {orbit.map((o, i) => (
           <div
             key={i}
@@ -221,8 +221,8 @@ function HeroMockup() {
               className="absolute left-1/2 top-0"
               style={{ transform: `translateX(-50%) rotate(${-o.angle}deg)` }}
             >
-              <div className="glass rounded-xl px-2.5 py-1.5 flex items-center gap-1.5 text-[11px] text-foreground/90 shadow-lg">
-                <o.icon className="h-3.5 w-3.5 text-teal" />
+              <div className="glass rounded-lg sm:rounded-xl px-2 py-1 sm:px-2.5 sm:py-1.5 flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] text-foreground/90 shadow-lg">
+                <o.icon className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-teal" />
                 {o.label}
               </div>
             </div>
@@ -231,30 +231,30 @@ function HeroMockup() {
       </div>
 
       {/* Central dashboard card */}
-      <div className="absolute inset-16 md:inset-20 rounded-2xl glass p-4 shadow-2xl glow-brand">
-        <div className="flex items-center justify-between text-[11px] text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-teal animate-pulse" /> Empreendimento Aurora</span>
-          <span>Hoje</span>
+      <div className="absolute inset-16 sm:inset-20 md:inset-24 rounded-2xl glass p-3 sm:p-4 shadow-2xl glow-brand">
+        <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5 truncate"><span className="h-1.5 w-1.5 rounded-full bg-teal animate-pulse shrink-0" /> Empreendimento Aurora</span>
+          <span className="shrink-0 ml-2">Hoje</span>
         </div>
-        <div className="mt-3 grid grid-cols-3 gap-2">
+        <div className="mt-2 sm:mt-3 grid grid-cols-3 gap-1.5 sm:gap-2">
           <MiniStat label="VGV mês" value="R$ 42,8M" trend="+12%" />
           <MiniStat label="Reservas" value="38" trend="+7" />
           <MiniStat label="Velocidade" value="1,8 u/dia" trend="+0,3" />
         </div>
-        <div className="mt-3 rounded-lg bg-background/40 p-2.5 border border-hairline">
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5">Funil de vendas</div>
+        <div className="mt-2 sm:mt-3 rounded-lg bg-background/40 p-2 sm:p-2.5 border border-hairline">
+          <div className="text-[9px] sm:text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5">Funil de vendas</div>
           <div className="grid grid-cols-6 gap-1">
             {["Novo","Contato","Qualif.","Proposta","Reserva","Contrato"].map((s, i) => (
-              <div key={s} className="flex flex-col items-center gap-1">
+              <div key={s} className="flex flex-col items-center gap-1 min-w-0">
                 <div className="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
                   <div className="h-full gradient-brand" style={{ width: `${100 - i * 14}%` }} />
                 </div>
-                <span className="text-[9px] text-muted-foreground truncate w-full text-center">{s}</span>
+                <span className="hidden sm:block text-[9px] text-muted-foreground truncate w-full text-center">{s}</span>
               </div>
             ))}
           </div>
         </div>
-        <div className="mt-2 grid grid-cols-2 gap-2">
+        <div className="mt-2 hidden sm:grid grid-cols-2 gap-2">
           <div className="rounded-lg bg-background/40 p-2 border border-hairline">
             <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground"><MessageSquare className="h-3 w-3 text-teal" /> IA no WhatsApp</div>
             <div className="mt-1 text-[11px] text-foreground/90">"Torre B, 3 dorm., R$ 720k. Posso agendar a visita?"</div>
@@ -267,11 +267,13 @@ function HeroMockup() {
       </div>
 
       {/* Floating status pill */}
-      <div className="absolute -top-2 right-4 glass rounded-full px-3 py-1.5 text-[11px] flex items-center gap-2 animate-float">
+      <div className="absolute top-0 right-2 sm:-top-2 sm:right-4 glass rounded-full px-2.5 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-[11px] flex items-center gap-1.5 sm:gap-2 animate-float">
         <Bell className="h-3 w-3 text-teal" />
-        Nova reserva · Unidade 1204
+        <span className="hidden sm:inline">Nova reserva · Unidade 1204</span>
+        <span className="sm:hidden">Nova reserva</span>
       </div>
     </div>
+
   );
 }
 
