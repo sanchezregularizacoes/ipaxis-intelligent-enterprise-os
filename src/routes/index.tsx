@@ -63,11 +63,12 @@ function Nav() {
         scrolled ? "backdrop-blur-xl bg-background/70 border-b border-hairline" : ""
       }`}
     >
-      <div className="container-page flex h-16 items-center gap-6">
-        <a href="#top" className="flex items-center gap-2.5 shrink-0">
-          <Logo />
-          <span className="font-display text-[15px] font-semibold tracking-tight">IPAXIS</span>
+      <div className="container-page flex h-16 items-center gap-3 sm:gap-6">
+        <a href="#top" className="flex items-center gap-2 sm:gap-2.5 shrink-0 min-w-0">
+          <Logo className="h-7 w-7 sm:h-8 sm:w-8" />
+          <span className="font-display text-[14px] sm:text-[15px] font-semibold tracking-tight">IPAXIS</span>
         </a>
+
         <nav className="hidden xl:flex items-center gap-1 flex-1 justify-center min-w-0">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="px-3 py-2 text-[13px] text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
