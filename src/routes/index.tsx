@@ -40,6 +40,7 @@ const NAV_LINKS = [
   { label: "Assistentes", href: "#assistentes" },
   { label: "Automação", href: "#automacao" },
 
+  { label: "Diferenciais", href: "#diferenciais" },
   { label: "Builder", href: "#builder" },
   { label: "Implantação", href: "#implantacao" },
   { label: "Segurança", href: "#seguranca" },
