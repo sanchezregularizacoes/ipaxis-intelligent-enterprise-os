@@ -40,6 +40,7 @@ const NAV_LINKS = [
   { label: "Assistentes", href: "#assistentes" },
   { label: "Automação", href: "#automacao" },
 
+  { label: "Diferenciais", href: "#diferenciais" },
   { label: "Builder", href: "#builder" },
   { label: "Implantação", href: "#implantacao" },
   { label: "Segurança", href: "#seguranca" },
@@ -974,6 +975,104 @@ function Comparativo() {
   );
 }
 
+/* ---------------- DIFERENCIAIS ---------------- */
+function Diferenciais() {
+  const items = [
+    {
+      icon: Bot,
+      title: "Trio de IAs que conversam entre si",
+      desc: "Enquanto outros CRMs oferecem 'um chatbot', a IPAXIS tem três inteligências trabalhando em conjunto: uma conversa com o cliente, outra analisa o comportamento dele, e a terceira domina cada empreendimento. O resultado é uma qualificação de lead no nível de um corretor sênior — em segundos.",
+    },
+    {
+      icon: Activity,
+      title: "IA proativa que cobra sua equipe",
+      desc: "Você define a meta ('aumentar conversão em 20%'). A IA traça o plano, cobra corretores diariamente, escala para o gerente quando algo atrasa e reporta ao CEO sem você pedir. É como ter uma consultoria Falconi rodando dentro do CRM.",
+    },
+    {
+      icon: Database,
+      title: "Memória que aprende com cada conversa",
+      desc: "Toda mensagem trocada, toda nota de visita, toda objeção do cliente vira conhecimento permanente da empresa. Se um corretor sair, o histórico e a inteligência ficam. Nenhum CRM imobiliário do Brasil faz isso hoje.",
+    },
+    {
+      icon: GitBranch,
+      title: "Conversa com o CV CRM sem trauma",
+      desc: "Você não precisa trocar de sistema. A IPAXIS espelha e sincroniza com o CV CRM em tempo real — leads, funis, corretores e tags. Sua operação continua no que já conhece; a inteligência acontece por cima.",
+    },
+    {
+      icon: FileSignature,
+      title: "Espelho de vendas com IA que lê contratos",
+      desc: "Torres, andares e unidades num painel único. Quando o corretor sobe o PDF assinado da reserva, uma IA de visão valida assinaturas, datas e campos automaticamente — reduzindo erros de estoque a praticamente zero.",
+    },
+    {
+      icon: MessageSquare,
+      title: "Proteção do WhatsApp da empresa",
+      desc: "Uma das maiores dores de quem usa WhatsApp em massa é ter o número banido. A IPAXIS tem um motor de aquecimento inteligente que respeita ritmos humanos, protege a saúde do número e evita bloqueios.",
+    },
+    {
+      icon: Rocket,
+      title: "Nova incorporadora pronta em 1 clique",
+      desc: "Cadastrou uma nova empresa? A plataforma já nasce com 13 módulos ativos, 12 assistentes de IA, funil completo, dashboards do CEO/Comercial/Administrativo e branding próprio. Zero configuração técnica.",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Fim da guerra por lead entre House e Parceiros",
+      desc: "Bloqueio automático de duplicidade por telefone (House) e nome+telefone (Parcerias), com fluxo de transferência aprovado pelo CEO. Acaba a briga interna que trava time comercial de incorporadora.",
+    },
+  ];
+  return (
+    <section id="diferenciais" className="relative py-16 sm:py-24 border-t border-hairline overflow-hidden">
+      <div className="absolute inset-0 -z-10 opacity-40" aria-hidden>
+        <div className="absolute top-1/4 -left-24 h-72 w-72 rounded-full bg-brand/20 blur-3xl" />
+        <div className="absolute bottom-0 -right-24 h-72 w-72 rounded-full bg-teal/20 blur-3xl" />
+      </div>
+      <div className="container-page">
+        <SectionHeader
+          eyebrow="Diferenciais · exclusivo IPAXIS"
+          title={<>Por que a IPAXIS <span className="gradient-text">não é "mais um CRM"</span>.</>}
+          description="A única plataforma brasileira com IA que opera sozinha no comercial de incorporadoras — não é chatbot, não é automação de e-mail, não é dashboard bonito. É um time digital trabalhando 24/7 ao lado dos seus corretores."
+        />
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {items.map((it, i) => {
+            const Icon = it.icon;
+            return (
+              <Reveal key={it.title} delay={i * 60}>
+                <div className="group relative h-full rounded-2xl border border-hairline bg-surface/60 p-6 backdrop-blur-sm transition hover:border-brand/40 hover:bg-surface">
+                  <div className="absolute inset-0 -z-10 rounded-2xl opacity-0 transition group-hover:opacity-100" style={{ background: "linear-gradient(135deg, rgba(36,123,255,0.08), rgba(24,214,208,0.08))" }} />
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl gradient-brand text-white shadow-lg shadow-brand/20">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="font-display text-xs uppercase tracking-[0.18em] text-muted-foreground">0{i + 1}</span>
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-semibold leading-tight">{it.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{it.desc}</p>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+        <Reveal delay={120}>
+          <div className="mt-14 rounded-3xl border border-hairline bg-surface/60 p-8 sm:p-10 backdrop-blur-sm">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <p className="max-w-3xl text-base sm:text-lg leading-relaxed text-foreground/90">
+                <span className="text-muted-foreground">CV CRM, Facilita, Sienge, Kenlo — todos são bons no que fazem.</span>{" "}
+                A <span className="gradient-text font-display font-semibold">IPAXIS</span> é a única que coloca IA operando de verdade sobre o que você já usa.
+                <span className="mt-3 block text-sm text-muted-foreground">Agende uma demonstração e veja um time de IA qualificando um lead ao vivo.</span>
+              </p>
+              <a
+                href="#contato"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/30 transition hover:shadow-brand/50"
+              >
+                Quero ver funcionando <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 /* ---------------- SEGURANÇA ---------------- */
 function Seguranca() {
   const items = [
@@ -1202,6 +1301,7 @@ function Home() {
 
         <Builder />
         <Segmentos />
+        <Diferenciais />
         <Comparativo />
         <Seguranca />
         <EarlyAdopters />
