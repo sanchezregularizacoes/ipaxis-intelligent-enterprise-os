@@ -1300,6 +1300,7 @@ function Home() {
 
         <Builder />
         <Segmentos />
+        <Diferenciais />
         <Comparativo />
         <Seguranca />
         <EarlyAdopters />
