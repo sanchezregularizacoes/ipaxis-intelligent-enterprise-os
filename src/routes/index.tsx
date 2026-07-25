@@ -79,7 +79,7 @@ function Nav() {
         </nav>
         <div className="hidden xl:flex items-center gap-2 shrink-0 ml-auto">
           <a
-            href="https://elevatev.lovable.app"
+            href="https://ipaxis.lovable.app"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand/10 px-4 py-2 text-[13px] font-medium text-foreground hover:bg-brand/20 hover:border-brand/60 transition"
@@ -107,7 +107,7 @@ function Nav() {
               </a>
             ))}
             <a
-              href="https://elevatev.lovable.app"
+              href="https://ipaxis.lovable.app"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
@@ -1231,7 +1231,7 @@ function CTAFinal() {
               Solicitar demonstração
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
-            <a href="https://elevatev.lovable.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full hairline px-6 py-3.5 text-sm font-medium hover:bg-white/5 transition">
+            <a href="https://ipaxis.lovable.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full hairline px-6 py-3.5 text-sm font-medium hover:bg-white/5 transition">
               Entrar na plataforma
             </a>
           </div>
